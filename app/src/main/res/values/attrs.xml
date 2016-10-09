@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <declare-styleable name="ImgTextView">
+        <attr name="text" format="string"/>
+        <attr name="checked" format="boolean"/>
+        <attr name="selectedImgRes" format="reference"/>
+        <attr name="unSelectedImgRes" format="reference"/>
+    </declare-styleable>
+</resources>

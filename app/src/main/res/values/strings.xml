@@ -1,3 +1,7 @@
 <resources>
     <string name="app_name">LocalApp</string>
+    <string name="tab1">首页</string>
+    <string name="tab2">网络请求</string>
+    <string name="tab3">数据库</string>
+    <string name="tab4">新内容</string>
 </resources>

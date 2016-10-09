@@ -1,21 +1,65 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <RelativeLayout
-        xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:tools="http://schemas.android.com/tools"
-        android:id="@+id/activity_main"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:paddingBottom="@dimen/activity_vertical_margin"
-        android:paddingLeft="@dimen/activity_horizontal_margin"
-        android:paddingRight="@dimen/activity_horizontal_margin"
-        android:paddingTop="@dimen/activity_vertical_margin"
-        tools:context="com.cmcj.gmj.localapp.home.MainActivity">
+        android:layout_height="match_parent">
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Hello World!"/>
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1px"
+            android:layout_alignParentBottom="true"
+            android:layout_marginBottom="50dp"
+            android:background="@color/black1"/>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_alignParentBottom="true"
+            android:background="@color/white1"
+            android:gravity="center_vertical"
+            android:orientation="horizontal">
+
+            <com.cmcj.gmj.localapp.widget.ImgTextView
+                android:id="@+id/public_home"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                app:checked="true"
+                app:selectedImgRes="@drawable/ic_main_home_checked"
+                app:text="@string/tab1"
+                app:unSelectedImgRes="@drawable/ic_main_home_unchecked"/>
+
+            <com.cmcj.gmj.localapp.widget.ImgTextView
+                android:id="@+id/public_network"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                app:checked="false"
+                app:selectedImgRes="@drawable/ic_main_network_checked"
+                app:text="@string/tab2"
+                app:unSelectedImgRes="@drawable/ic_main_network_unchecked"/>
+
+            <com.cmcj.gmj.localapp.widget.ImgTextView
+                android:id="@+id/public_database"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                app:checked="false"
+                app:selectedImgRes="@drawable/ic_main_database_checked"
+                app:text="@string/tab3"
+                app:unSelectedImgRes="@drawable/ic_main_database_unchecked"/>
+
+            <com.cmcj.gmj.localapp.widget.ImgTextView
+                android:id="@+id/public_new"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                app:checked="false"
+                app:selectedImgRes="@drawable/ic_main_center_checked"
+                app:text="@string/tab4"
+                app:unSelectedImgRes="@drawable/ic_main_center_unchecked"/>
+        </LinearLayout>
     </RelativeLayout>
 </layout>

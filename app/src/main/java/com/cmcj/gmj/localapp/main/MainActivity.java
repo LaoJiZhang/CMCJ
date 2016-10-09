@@ -1,13 +1,15 @@
-package com.cmcj.gmj.localapp.home;
+package com.cmcj.gmj.localapp.main;
 
 import android.databinding.ViewDataBinding;
+import android.view.View;
+import android.widget.Toast;
 
 import com.cmcj.gmj.localapp.R;
 import com.cmcj.gmj.localapp.base.BaseDataBindingActivity;
 import com.cmcj.gmj.localapp.base.BasePresenter;
 import com.cmcj.gmj.localapp.databinding.ActivityMainBinding;
 
-public class MainActivity extends BaseDataBindingActivity<HomePresenter> implements IHome {
+public class MainActivity extends BaseDataBindingActivity<MainPresenter> implements IMain {
 
     private ActivityMainBinding mBinding;
 
@@ -21,7 +23,7 @@ public class MainActivity extends BaseDataBindingActivity<HomePresenter> impleme
 
             @Override
             public BasePresenter createActivityPresenter() {
-                return new HomePresenter(MainActivity.this);
+                return new MainPresenter(MainActivity.this);
             }
 
             @Override
@@ -30,5 +32,15 @@ public class MainActivity extends BaseDataBindingActivity<HomePresenter> impleme
                 getPresenter().getStr();
             }
         };
+    }
+
+    @Override
+    public ActivityTitleInfo createTitleInfo() {
+        return new ActivityTitleInfo("我是首页标题123", new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Toast.makeText(MainActivity.this, "aaa", Toast.LENGTH_SHORT).show();
+            }
+        });
     }
 }

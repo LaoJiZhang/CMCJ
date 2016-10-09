@@ -1,4 +1,4 @@
-package com.cmcj.gmj.localapp.home;
+package com.cmcj.gmj.localapp.main;
 
 import com.cmcj.gmj.localapp.base.BaseDatabindingPresenter;
 import com.cmcj.gmj.localapp.base.IBaseView;
@@ -8,9 +8,9 @@ import com.cmcj.gmj.localapp.utils.LocalLogger;
  * Created by guomaojian on 16/9/28.
  */
 
-public class HomePresenter extends BaseDatabindingPresenter<IHome, MainActivity> {
+public class MainPresenter extends BaseDatabindingPresenter<IMain, MainActivity> {
 
-    public HomePresenter(IBaseView view) {
+    public MainPresenter(IBaseView view) {
         super(view);
     }
 

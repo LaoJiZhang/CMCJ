@@ -1,5 +1,7 @@
 package com.cmcj.gmj.localapp.base;
 
+import org.greenrobot.eventbus.EventBus;
+
 import java.lang.ref.WeakReference;
 
 /**
@@ -26,6 +28,10 @@ public class BasePresenter<V extends IBaseView, A extends BaseActivity> {
         return (A) getActivity();
     }
 
+    protected void onCreate() {
+        EventBus.getDefault().register(getActivity());
+    }
+
     protected void onStart() {
     }
 
@@ -39,5 +45,6 @@ public class BasePresenter<V extends IBaseView, A extends BaseActivity> {
     }
 
     protected void onDestroy() {
+        EventBus.getDefault().unregister(getActivity());
     }
 }

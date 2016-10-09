@@ -1,5 +1,7 @@
 package com.cmcj.gmj.localapp.base;
 
+import android.os.Bundle;
+import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 
 /**
@@ -12,6 +14,13 @@ public abstract class BaseActivity<P extends BasePresenter> extends AppCompatAct
 
     protected P getPresenter() {
         return mPresenter;
+    }
+
+    @Override
+    protected void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        if (getPresenter() != null)
+            getPresenter().onCreate();
     }
 
     @Override

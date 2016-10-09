@@ -1,4 +1,4 @@
-package com.cmcj.gmj.localapp.home;
+package com.cmcj.gmj.localapp.main;
 
 import com.cmcj.gmj.localapp.base.IBaseView;
 
@@ -6,5 +6,5 @@ import com.cmcj.gmj.localapp.base.IBaseView;
  * Created by guomaojian on 16/9/28.
  */
 
-public interface IHome extends IBaseView<HomePresenter> {
+public interface IMain extends IBaseView<MainPresenter> {
 }
