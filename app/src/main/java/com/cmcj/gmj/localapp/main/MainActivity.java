@@ -30,7 +30,7 @@ public class MainActivity extends BaseDataBindingActivity<MainPresenter> impleme
             public void finishCreateDataBinding(ViewDataBinding viewDataBinding) {
                 mBinding = (ActivityMainBinding) viewDataBinding;
                 getPresenter().getStr();
-                setActivityFlag(new ActivityFlag(ActivityFlag.STATE_NORMAL));
+                showErrNetworkPage();
             }
         };
     }
@@ -43,5 +43,11 @@ public class MainActivity extends BaseDataBindingActivity<MainPresenter> impleme
                 Toast.makeText(MainActivity.this, "aaa", Toast.LENGTH_SHORT).show();
             }
         });
+    }
+
+    @Override
+    public void refreshRetryBtnClick(View.OnClickListener listener) {
+        Toast.makeText(MainActivity.this, "再试一次123", Toast.LENGTH_SHORT).show();
+        showNormalPage();
     }
 }
