@@ -26,7 +26,6 @@ public abstract class BaseDataBindingActivity<P extends BasePresenter> extends B
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
         mActivityTitleInfo = createTitleInfo();
         mActivityProxy = createActivityProxy();
         mPresenter = (P) mActivityProxy.createActivityPresenter();
@@ -58,6 +57,7 @@ public abstract class BaseDataBindingActivity<P extends BasePresenter> extends B
         setContentView(mBinding.getRoot());
 
         mActivityProxy.finishCreateDataBinding(contentViewDataBinding);
+        super.onCreate(savedInstanceState);
     }
 
     public abstract ActivityProxy createActivityProxy();

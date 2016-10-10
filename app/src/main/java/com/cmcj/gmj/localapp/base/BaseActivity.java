@@ -4,8 +4,6 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 
-import org.greenrobot.eventbus.EventBus;
-
 /**
  * Created by guomaojian on 16/9/28.
  */
@@ -23,7 +21,6 @@ public abstract class BaseActivity<P extends BasePresenter> extends AppCompatAct
         super.onCreate(savedInstanceState);
         if (getPresenter() != null)
             getPresenter().onCreate();
-        EventBus.getDefault().register(this);
     }
 
     @Override
@@ -59,6 +56,5 @@ public abstract class BaseActivity<P extends BasePresenter> extends AppCompatAct
         super.onDestroy();
         if (getPresenter() != null)
             getPresenter().onDestroy();
-        EventBus.getDefault().unregister(this);
     }
 }

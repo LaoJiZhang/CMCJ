@@ -1,5 +1,8 @@
 package com.cmcj.gmj.localapp.main;
 
+import android.view.View;
+import android.widget.Toast;
+
 import com.cmcj.gmj.localapp.base.BaseDatabindingPresenter;
 import com.cmcj.gmj.localapp.base.IBaseView;
 import com.cmcj.gmj.localapp.utils.LocalLogger;
@@ -21,5 +24,9 @@ public class MainPresenter extends BaseDatabindingPresenter<IMain, MainActivity>
 
     public void getStr() {
         LocalLogger.d(this.getClass().getSimpleName(), "getStr");
+    }
+
+    public void onClickNetworkBinding(View view) {
+        Toast.makeText(getActivity(), "onClickNetworkBinding 123", Toast.LENGTH_SHORT).show();
     }
 }

@@ -1,5 +1,7 @@
 package com.cmcj.gmj.localapp.base;
 
+import com.cmcj.gmj.localapp.utils.LocalLogger;
+
 import org.greenrobot.eventbus.EventBus;
 
 import java.lang.ref.WeakReference;
@@ -10,22 +12,25 @@ import java.lang.ref.WeakReference;
 
 public class BasePresenter<V extends IBaseView, A extends BaseActivity> {
 
-    public WeakReference<IBaseView> mWefView;
+    protected WeakReference<IBaseView> mWefView;
 
-    public BasePresenter(IBaseView view) {
+    protected BasePresenter(IBaseView view) {
         mWefView = new WeakReference<>(view);
     }
 
-    V getView() {
+    protected V getView() {
         return (V) mWefView.get();
     }
 
-    boolean isAttachView() {
+    protected boolean isAttachView() {
         return getView() != null;
     }
 
-    A getActivity() {
-        return (A) getActivity();
+    protected A getActivity() {
+        LocalLogger.d(this.getClass().getSimpleName(), "BasePresenter getActivity");
+        if (mWefView.get() != null)
+            return (A) mWefView.get();
+        return null;
     }
 
     protected void onCreate() {

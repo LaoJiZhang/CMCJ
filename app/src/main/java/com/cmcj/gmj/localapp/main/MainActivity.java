@@ -29,6 +29,7 @@ public class MainActivity extends BaseDataBindingActivity<MainPresenter> impleme
             @Override
             public void finishCreateDataBinding(ViewDataBinding viewDataBinding) {
                 mBinding = (ActivityMainBinding) viewDataBinding;
+                mBinding.setPresenter(getPresenter());
                 getPresenter().getStr();
                 showErrNetworkPage();
             }

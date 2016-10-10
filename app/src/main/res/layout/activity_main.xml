@@ -2,21 +2,31 @@
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:app="http://schemas.android.com/apk/res-auto">
 
-    <RelativeLayout
+    <data>
+
+        <variable
+            name="presenter"
+            type="com.cmcj.gmj.localapp.main.MainPresenter"/>
+    </data>
+
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"/>
 
         <View
             android:layout_width="match_parent"
             android:layout_height="1px"
-            android:layout_alignParentBottom="true"
-            android:layout_marginBottom="50dp"
             android:background="@color/black1"/>
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="50dp"
-            android:layout_alignParentBottom="true"
             android:background="@color/white1"
             android:gravity="center_vertical"
             android:orientation="horizontal">
@@ -36,6 +46,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
+                android:onClick="@{presenter.onClickNetworkBinding}"
                 app:checked="false"
                 app:selectedImgRes="@drawable/ic_main_network_checked"
                 app:text="@string/tab2"
@@ -61,5 +72,5 @@
                 app:text="@string/tab4"
                 app:unSelectedImgRes="@drawable/ic_main_center_unchecked"/>
         </LinearLayout>
-    </RelativeLayout>
+    </LinearLayout>
 </layout>
