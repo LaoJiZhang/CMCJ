@@ -12,6 +12,10 @@
         <variable
             name="info"
             type="ActivityTitleInfo"/>
+
+        <variable
+            name="flag"
+            type="com.cmcj.gmj.localapp.base.BaseDataBindingActivity.ActivityFlag"/>
     </data>
 
     <LinearLayout
@@ -29,10 +33,36 @@
             android:layout_height="1px"
             android:background="@color/black1"/>
 
+
+        <!-- loading 页 -->
+        <include
+            layout="@layout/activity_layout_loading"
+            bind:flag="@{flag}"/>
+
+        <!-- content 页 -->
         <FrameLayout
             android:id="@+id/public_content"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_weight="1"/>
+            android:layout_weight="1"
+            android:visibility="@{flag.flag == flag.STATE_NORMAL ? View.VISIBLE : View.GONE , default = visible}"/>
+
+        <!-- 无网络 页 -->
+        <include
+            android:id="@+id/public_err_network"
+            layout="@layout/activity_layout_err_network"
+            bind:flag="@{flag}"/>
+
+        <!-- 无数据 页 -->
+        <include
+            android:id="@+id/public_empty"
+            layout="@layout/activity_layout_empty"
+            bind:flag="@{flag}"/>
+
+        <!-- 错误 页 -->
+        <include
+            android:id="@+id/public_error"
+            layout="@layout/activity_layout_error"
+            bind:flag="@{flag}"/>
     </LinearLayout>
 </layout>

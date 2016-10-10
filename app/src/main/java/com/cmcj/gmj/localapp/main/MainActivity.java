@@ -30,6 +30,7 @@ public class MainActivity extends BaseDataBindingActivity<MainPresenter> impleme
             public void finishCreateDataBinding(ViewDataBinding viewDataBinding) {
                 mBinding = (ActivityMainBinding) viewDataBinding;
                 getPresenter().getStr();
+                setActivityFlag(new ActivityFlag(ActivityFlag.STATE_NORMAL));
             }
         };
     }

@@ -17,7 +17,14 @@ public abstract class BaseDataBindingActivity<P extends BasePresenter> extends B
 
     private ActivityProxy mActivityProxy;
     private ActivityTitleInfo mActivityTitleInfo;
+    private ActivityFlag mActivityFlag;
     private ActivityLayoutBinding mBinding;
+
+    public void setActivityFlag(ActivityFlag activityFlag) {
+        mActivityFlag = activityFlag;
+        if (mBinding != null)
+            mBinding.setFlag(mActivityFlag);
+    }
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -73,5 +80,23 @@ public abstract class BaseDataBindingActivity<P extends BasePresenter> extends B
             this.title = title;
             this.clickListener = listener;
         }
+    }
+
+    public static class ActivityFlag {
+        public static final int STATE_LOADING = 0;
+        public static final int STATE_NORMAL = 1;
+        public static final int STATE_ERROR = 2;
+        public static final int STATE_EMPTY = 3;
+        public static final int STATE_ERR_NETWORK = 4;
+
+        public int flag;
+        public int resId;
+        public int strId1;
+        public int strId2;
+
+        public ActivityFlag(int flag) {
+            this.flag = flag;
+        }
+
     }
 }
