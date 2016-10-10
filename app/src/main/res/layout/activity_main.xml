@@ -32,17 +32,16 @@
             android:orientation="horizontal">
 
             <com.cmcj.gmj.localapp.widget.ImgTextView
-                android:id="@+id/public_home"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
+                android:onClick="@{presenter.onClickHomeBinding}"
                 app:checked="true"
                 app:selectedImgRes="@drawable/ic_main_home_checked"
                 app:text="@string/tab1"
                 app:unSelectedImgRes="@drawable/ic_main_home_unchecked"/>
 
             <com.cmcj.gmj.localapp.widget.ImgTextView
-                android:id="@+id/public_network"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
@@ -53,20 +52,20 @@
                 app:unSelectedImgRes="@drawable/ic_main_network_unchecked"/>
 
             <com.cmcj.gmj.localapp.widget.ImgTextView
-                android:id="@+id/public_database"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
+                android:onClick="@{presenter.onClickDatabaseBinding}"
                 app:checked="false"
                 app:selectedImgRes="@drawable/ic_main_database_checked"
                 app:text="@string/tab3"
                 app:unSelectedImgRes="@drawable/ic_main_database_unchecked"/>
 
             <com.cmcj.gmj.localapp.widget.ImgTextView
-                android:id="@+id/public_new"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
+                android:onClick="@{presenter.onClickNewBinding}"
                 app:checked="false"
                 app:selectedImgRes="@drawable/ic_main_center_checked"
                 app:text="@string/tab4"

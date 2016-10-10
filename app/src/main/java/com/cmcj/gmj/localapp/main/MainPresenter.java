@@ -29,4 +29,16 @@ public class MainPresenter extends BaseDatabindingPresenter<IMain, MainActivity>
     public void onClickNetworkBinding(View view) {
         Toast.makeText(getActivity(), "onClickNetworkBinding 123", Toast.LENGTH_SHORT).show();
     }
+
+    public void onClickHomeBinding(View view) {
+
+    }
+
+    public void onClickDatabaseBinding(View view) {
+
+    }
+
+    public void onClickNewBinding(View view) {
+
+    }
 }
