@@ -2,7 +2,7 @@ package com.cmcj.gmj.localapp.utils;
 
 import android.widget.Toast;
 
-import com.cmcj.gmj.localapp.LocalApplication;
+import com.cmcj.gmj.localapp.application.LocalApplication;
 
 /**
  * Created by guomaojian on 16/10/10.
