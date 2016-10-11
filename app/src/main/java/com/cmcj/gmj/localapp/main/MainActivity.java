@@ -5,8 +5,8 @@ import android.view.View;
 import android.widget.Toast;
 
 import com.cmcj.gmj.localapp.R;
-import com.cmcj.gmj.localapp.base.BaseDataBindingActivity;
-import com.cmcj.gmj.localapp.base.BasePresenter;
+import com.cmcj.gmj.localapp.base.activity.BaseDataBindingActivity;
+import com.cmcj.gmj.localapp.base.presenter.BasePresenter;
 import com.cmcj.gmj.localapp.databinding.ActivityMainBinding;
 
 public class MainActivity extends BaseDataBindingActivity<MainPresenter> implements IMain {
@@ -50,5 +50,19 @@ public class MainActivity extends BaseDataBindingActivity<MainPresenter> impleme
     public void refreshRetryBtnClick(View.OnClickListener listener) {
         Toast.makeText(MainActivity.this, "再试一次123", Toast.LENGTH_SHORT).show();
         showNormalPage();
+        switchTab(MainActivity.MainTab.MAIN_HOME);
+    }
+
+    @Override
+    public void switchTab(int position) {
+        if (mBinding != null)
+            mBinding.setSwitchTab(position);
+    }
+
+    public interface MainTab {
+        public static final int MAIN_HOME = 1;
+        public static final int MAIN_NEWWORK = 2;
+        public static final int MAIN_DATABASE = 3;
+        public static final int MAIN_NEW = 4;
     }
 }

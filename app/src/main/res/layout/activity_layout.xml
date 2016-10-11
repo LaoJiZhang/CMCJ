@@ -7,7 +7,7 @@
 
         <import type="android.view.View"/>
 
-        <import type="com.cmcj.gmj.localapp.base.BaseDataBindingActivity.ActivityTitleInfo"/>
+        <import type="com.cmcj.gmj.localapp.base.activity.BaseDataBindingActivity.ActivityTitleInfo"/>
 
         <variable
             name="info"
@@ -15,7 +15,7 @@
 
         <variable
             name="flag"
-            type="com.cmcj.gmj.localapp.base.BaseDataBindingActivity.ActivityFlag"/>
+            type="com.cmcj.gmj.localapp.base.activity.BaseDataBindingActivity.ActivityFlag"/>
     </data>
 
     <LinearLayout

@@ -1,4 +1,7 @@
-package com.cmcj.gmj.localapp.base;
+package com.cmcj.gmj.localapp.base.presenter;
+
+import com.cmcj.gmj.localapp.base.activity.BaseActivity;
+import com.cmcj.gmj.localapp.base.view.IBaseView;
 
 /**
  * Created by guomaojian on 16/10/8.

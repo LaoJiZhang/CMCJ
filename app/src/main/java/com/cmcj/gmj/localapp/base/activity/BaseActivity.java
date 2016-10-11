@@ -1,8 +1,10 @@
-package com.cmcj.gmj.localapp.base;
+package com.cmcj.gmj.localapp.base.activity;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
+
+import com.cmcj.gmj.localapp.base.presenter.BasePresenter;
 
 /**
  * Created by guomaojian on 16/9/28.
@@ -10,9 +12,9 @@ import android.support.v7.app.AppCompatActivity;
 
 public abstract class BaseActivity<P extends BasePresenter> extends AppCompatActivity {
 
-    protected P mPresenter;
+    public P mPresenter;
 
-    protected P getPresenter() {
+    public P getPresenter() {
         return mPresenter;
     }
 

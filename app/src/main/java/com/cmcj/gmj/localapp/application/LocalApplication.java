@@ -2,7 +2,7 @@ package com.cmcj.gmj.localapp.application;
 
 import android.app.Application;
 
-import com.cmcj.gmj.localapp.utils.LocalLogger;
+import com.facebook.stetho.Stetho;
 import com.squareup.leakcanary.LeakCanary;
 
 /**
@@ -17,7 +17,6 @@ public class LocalApplication extends Application {
     @Override
     public void onCreate() {
         super.onCreate();
-        LocalLogger.d(this.getClass().getSimpleName(), " ++++++++++++ LocalApplication onCreate");
         sApp = this;
         init();
     }
@@ -30,6 +29,8 @@ public class LocalApplication extends Application {
                 return;
             }
             LeakCanary.install(this);
+
+            Stetho.initializeWithDefaults(this);
         }
     }
 }

@@ -2,9 +2,9 @@ package com.cmcj.gmj.localapp.main;
 
 import android.view.View;
 
-import com.cmcj.gmj.localapp.base.BaseDatabindingPresenter;
-import com.cmcj.gmj.localapp.base.IBaseView;
-import com.cmcj.gmj.localapp.utils.LocalLogger;
+import com.cmcj.gmj.localapp.base.presenter.BaseDatabindingPresenter;
+import com.cmcj.gmj.localapp.base.view.IBaseView;
+import com.cmcj.gmj.localapp.utils.LogUtils;
 import com.cmcj.gmj.localapp.utils.ToastUtils;
 
 /**
@@ -19,26 +19,30 @@ public class MainPresenter extends BaseDatabindingPresenter<IMain, MainActivity>
 
     @Override
     protected void finishCreatePresenter() {
-        LocalLogger.d(this.getClass().getSimpleName(), "finishCreatePresenter");
+        LogUtils.d(this.getClass().getSimpleName(), "finishCreatePresenter");
     }
 
     public void getStr() {
-        LocalLogger.d(this.getClass().getSimpleName(), "getStr");
-    }
-
-    public void onClickNetworkBinding(View view) {
-        ToastUtils.showToast("onClickNetworkBinding 123");
+        LogUtils.d(this.getClass().getSimpleName(), "getStr");
     }
 
     public void onClickHomeBinding(View view) {
+        getView().switchTab(MainActivity.MainTab.MAIN_HOME);
         ToastUtils.showToast("onClickHomeBinding");
     }
 
+    public void onClickNetworkBinding(View view) {
+        getView().switchTab(MainActivity.MainTab.MAIN_NEWWORK);
+        ToastUtils.showToast("onClickNetworkBinding 123");
+    }
+
     public void onClickDatabaseBinding(View view) {
+        getView().switchTab(MainActivity.MainTab.MAIN_DATABASE);
         ToastUtils.showToast("onClickDatabaseBinding");
     }
 
     public void onClickNewBinding(View view) {
+        getView().switchTab(MainActivity.MainTab.MAIN_NEW);
         ToastUtils.showToast("onClickNewBinding");
     }
 }

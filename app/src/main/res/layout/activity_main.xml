@@ -1,8 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:app="http://schemas.android.com/apk/res-auto">
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:bind="http://schemas.android.com/apk/res-auto">
 
     <data>
+
+        <import type="com.cmcj.gmj.localapp.main.MainActivity.MainTab"/>
+
+        <variable
+            name="switchTab"
+            type="int"/>
 
         <variable
             name="presenter"
@@ -36,7 +43,7 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:onClick="@{presenter.onClickHomeBinding}"
-                app:checked="true"
+                app:checked="@{switchTab == MainTab.MAIN_HOME}"
                 app:selectedImgRes="@drawable/ic_main_home_checked"
                 app:text="@string/tab1"
                 app:unSelectedImgRes="@drawable/ic_main_home_unchecked"/>
@@ -46,30 +53,30 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:onClick="@{presenter.onClickNetworkBinding}"
-                app:checked="false"
                 app:selectedImgRes="@drawable/ic_main_network_checked"
                 app:text="@string/tab2"
-                app:unSelectedImgRes="@drawable/ic_main_network_unchecked"/>
+                app:unSelectedImgRes="@drawable/ic_main_network_unchecked"
+                bind:checked="@{switchTab == MainTab.MAIN_NEWWORK}"/>
 
             <com.cmcj.gmj.localapp.widget.ImgTextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:onClick="@{presenter.onClickDatabaseBinding}"
-                app:checked="false"
                 app:selectedImgRes="@drawable/ic_main_database_checked"
                 app:text="@string/tab3"
-                app:unSelectedImgRes="@drawable/ic_main_database_unchecked"/>
+                app:unSelectedImgRes="@drawable/ic_main_database_unchecked"
+                bind:checked="@{switchTab == MainTab.MAIN_DATABASE}"/>
 
             <com.cmcj.gmj.localapp.widget.ImgTextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:onClick="@{presenter.onClickNewBinding}"
-                app:checked="false"
                 app:selectedImgRes="@drawable/ic_main_center_checked"
                 app:text="@string/tab4"
-                app:unSelectedImgRes="@drawable/ic_main_center_unchecked"/>
+                app:unSelectedImgRes="@drawable/ic_main_center_unchecked"
+                bind:checked="@{switchTab == MainTab.MAIN_NEW}"/>
         </LinearLayout>
     </LinearLayout>
 </layout>

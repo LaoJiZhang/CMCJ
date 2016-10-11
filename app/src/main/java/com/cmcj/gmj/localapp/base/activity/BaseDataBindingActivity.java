@@ -1,4 +1,4 @@
-package com.cmcj.gmj.localapp.base;
+package com.cmcj.gmj.localapp.base.activity;
 
 import android.databinding.DataBindingUtil;
 import android.databinding.ViewDataBinding;
@@ -7,6 +7,7 @@ import android.support.annotation.Nullable;
 import android.view.View;
 
 import com.cmcj.gmj.localapp.R;
+import com.cmcj.gmj.localapp.base.presenter.BasePresenter;
 import com.cmcj.gmj.localapp.databinding.ActivityLayoutBinding;
 
 import org.greenrobot.eventbus.EventBus;

@@ -2,11 +2,11 @@ package com.cmcj.gmj.localapp.utils;
 
 import android.util.Log;
 
-public class LocalLogger {
+public class LogUtils {
 
-    private static final String TAG = LocalLogger.class.getSimpleName();
+    private static final String TAG = LogUtils.class.getSimpleName();
 
-    private LocalLogger() {
+    private LogUtils() {
     }
 
     public static void v(String msg) {
