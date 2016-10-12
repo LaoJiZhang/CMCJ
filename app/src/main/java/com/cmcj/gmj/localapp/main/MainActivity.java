@@ -6,8 +6,15 @@ import android.widget.Toast;
 
 import com.cmcj.gmj.localapp.R;
 import com.cmcj.gmj.localapp.base.activity.BaseDataBindingActivity;
+import com.cmcj.gmj.localapp.base.network.RetrofitService;
 import com.cmcj.gmj.localapp.base.presenter.BasePresenter;
 import com.cmcj.gmj.localapp.databinding.ActivityMainBinding;
+import com.cmcj.gmj.localapp.main.modle.MovieResponse;
+import com.cmcj.gmj.localapp.utils.LogUtils;
+
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 public class MainActivity extends BaseDataBindingActivity<MainPresenter> implements IMain {
 
@@ -48,9 +55,26 @@ public class MainActivity extends BaseDataBindingActivity<MainPresenter> impleme
 
     @Override
     public void refreshRetryBtnClick(View.OnClickListener listener) {
-        Toast.makeText(MainActivity.this, "再试一次123", Toast.LENGTH_SHORT).show();
-        showNormalPage();
-        switchTab(MainActivity.MainTab.MAIN_HOME);
+        Map<String, String> queryMap = new HashMap<>();
+        queryMap.put("key", "dc1514f5fb78c2001153f0d280333228");
+        queryMap.put("title", "哥斯拉");
+
+        RetrofitService.sendLocalRequest(RetrofitService.getAPIService().loadingMovies(queryMap), new RetrofitService.LocalResponseListener<List<MovieResponse>>() {
+            @Override
+            public void onSuccessed(List<MovieResponse> data) {
+                for (MovieResponse item : data)
+                    LogUtils.i("onResponse       " + item.toString());
+            }
+
+            @Override
+            public void onFailed(int errorCode, String errMsg) {
+                LogUtils.i("onFailure");
+            }
+        });
+
+//        Toast.makeText(MainActivity.this, "再试一次123", Toast.LENGTH_SHORT).show();
+//        showNormalPage();
+//        switchTab(MainActivity.MainTab.MAIN_HOME);
     }
 
     @Override

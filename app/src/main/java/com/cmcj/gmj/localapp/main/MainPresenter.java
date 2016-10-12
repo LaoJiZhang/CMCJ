@@ -19,11 +19,11 @@ public class MainPresenter extends BaseDatabindingPresenter<IMain, MainActivity>
 
     @Override
     protected void finishCreatePresenter() {
-        LogUtils.d(this.getClass().getSimpleName(), "finishCreatePresenter");
+        LogUtils.d("finishCreatePresenter");
     }
 
     public void getStr() {
-        LogUtils.d(this.getClass().getSimpleName(), "getStr");
+        LogUtils.d("getStr");
     }
 
     public void onClickHomeBinding(View view) {

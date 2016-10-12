@@ -2,6 +2,8 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
           package="com.cmcj.gmj.localapp">
 
+    <uses-permission android:name="android.permission.INTERNET"/>
+
     <application
         android:name="com.cmcj.gmj.localapp.application.LocalApplication"
         android:allowBackup="true"

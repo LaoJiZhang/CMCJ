@@ -21,26 +21,34 @@ android {
     dataBinding {
         enabled = true
     }
+    dependencies {
+        compile fileTree(dir: 'libs', include: ['*.jar'])
+        androidTestCompile('com.android.support.test.espresso:espresso-core:2.2.2', {
+            exclude group: 'com.android.support', module: 'support-annotations'
+        })
+        compile 'com.android.support:appcompat-v7:24.2.1'
+        //EventBus 3.0
+        compile 'org.greenrobot:eventbus:3.0.0'
+        //Retrofit
+        compile 'com.squareup.retrofit2:retrofit:2.1.0'
+        compile 'com.squareup.retrofit2:converter-gson:2.1.0'
+        compile 'com.squareup.okhttp:okhttp:2.4.0'
+
+        //LeakCanary
+        debugCompile 'com.squareup.leakcanary:leakcanary-android:1.5'
+        releaseCompile 'com.squareup.leakcanary:leakcanary-android-no-op:1.5'
+        testCompile 'com.squareup.leakcanary:leakcanary-android-no-op:1.5'
+
+        //Stetho start
+        compile 'com.facebook.stetho:stetho:1.4.1'
+        //Only the main stetho dependency is strictly required; however, you may also wish to use one of the network helpers:
+        compile 'com.facebook.stetho:stetho-okhttp3:1.4.1'
+//    compile 'com.facebook.stetho:stetho-urlconnection:1.4.1'
+        //You can also enable a JavaScript console with:
+        compile 'com.facebook.stetho:stetho-js-rhino:1.4.1'
+        //Stetho end
+
+        testCompile 'junit:junit:4.12'
+    }
 }
 
-dependencies {
-    compile fileTree(dir: 'libs', include: ['*.jar'])
-    androidTestCompile('com.android.support.test.espresso:espresso-core:2.2.2', {
-        exclude group: 'com.android.support', module: 'support-annotations'
-    })
-    compile 'com.android.support:appcompat-v7:24.2.1'
-    //EventBus 3.0
-    compile 'org.greenrobot:eventbus:3.0.0'
-    //Retrofit
-    compile 'com.squareup.retrofit2:retrofit:2.1.0'
-
-    //LeakCanary
-    debugCompile 'com.squareup.leakcanary:leakcanary-android:1.5'
-    releaseCompile 'com.squareup.leakcanary:leakcanary-android-no-op:1.5'
-    testCompile 'com.squareup.leakcanary:leakcanary-android-no-op:1.5'
-
-    //Stetho
-    compile 'com.facebook.stetho:stetho:1.4.1'
-
-    testCompile 'junit:junit:4.12'
-}

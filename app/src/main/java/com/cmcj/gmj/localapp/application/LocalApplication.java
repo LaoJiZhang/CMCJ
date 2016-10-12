@@ -2,6 +2,7 @@ package com.cmcj.gmj.localapp.application;
 
 import android.app.Application;
 
+import com.cmcj.gmj.localapp.base.network.RetrofitService;
 import com.facebook.stetho.Stetho;
 import com.squareup.leakcanary.LeakCanary;
 
@@ -12,7 +13,7 @@ import com.squareup.leakcanary.LeakCanary;
 public class LocalApplication extends Application {
 
     public static LocalApplication sApp;
-    public static boolean DEBUG = false;
+
 
     @Override
     public void onCreate() {
@@ -22,7 +23,7 @@ public class LocalApplication extends Application {
     }
 
     private void init() {
-        if (!DEBUG) {
+        if (LocalAppConfig.DEBUG) {
             if (LeakCanary.isInAnalyzerProcess(this)) {
                 // This process is dedicated to LeakCanary for heap analysis.
                 // You should not init your app in this process.
@@ -32,5 +33,7 @@ public class LocalApplication extends Application {
 
             Stetho.initializeWithDefaults(this);
         }
+        // Retrofit 初始化
+        RetrofitService.createRetrofit();
     }
 }

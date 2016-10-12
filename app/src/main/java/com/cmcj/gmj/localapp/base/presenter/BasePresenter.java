@@ -2,7 +2,6 @@ package com.cmcj.gmj.localapp.base.presenter;
 
 import com.cmcj.gmj.localapp.base.activity.BaseActivity;
 import com.cmcj.gmj.localapp.base.view.IBaseView;
-import com.cmcj.gmj.localapp.utils.LogUtils;
 
 import org.greenrobot.eventbus.EventBus;
 
@@ -29,7 +28,6 @@ public class BasePresenter<V extends IBaseView, A extends BaseActivity> {
     }
 
     public A getActivity() {
-        LogUtils.d(this.getClass().getSimpleName(), "BasePresenter getActivity");
         if (mWefView.get() != null)
             return (A) mWefView.get();
         return null;
