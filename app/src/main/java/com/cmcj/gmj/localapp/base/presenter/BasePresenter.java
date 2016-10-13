@@ -1,6 +1,7 @@
 package com.cmcj.gmj.localapp.base.presenter;
 
 import com.cmcj.gmj.localapp.base.activity.BaseActivity;
+import com.cmcj.gmj.localapp.base.network.RetrofitService;
 import com.cmcj.gmj.localapp.base.view.IBaseView;
 
 import org.greenrobot.eventbus.EventBus;
@@ -51,5 +52,6 @@ public class BasePresenter<V extends IBaseView, A extends BaseActivity> {
 
     public void onDestroy() {
         EventBus.getDefault().unregister(getActivity());
+        RetrofitService.removeCurrentCall(getActivity());
     }
 }

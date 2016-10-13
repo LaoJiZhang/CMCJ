@@ -1,5 +1,6 @@
 package com.cmcj.gmj.localapp.base.network;
 
+import android.app.Activity;
 import android.support.annotation.NonNull;
 import android.text.TextUtils;
 
@@ -10,7 +11,9 @@ import com.cmcj.gmj.localapp.utils.LogUtils;
 import com.facebook.stetho.okhttp3.StethoInterceptor;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.concurrent.TimeUnit;
 
@@ -146,6 +149,19 @@ public class RetrofitService {
         return mAPIService;
     }
 
+    public static HashMap<String, List<Call<?>>> mRetrofitCallMap = new HashMap<>();
+
+    public static <T extends LocalResponse<D>, D> void sendLocalRequest(Activity activity, Call<T> call, final LocalResponseListener<D> listener) {
+        if (!mRetrofitCallMap.containsKey(activity)) {
+            String key = activity.getPackageName() + activity.getLocalClassName();
+            mRetrofitCallMap.put(key, new ArrayList<Call<?>>());
+            if (!mRetrofitCallMap.get(key).contains(call)) {
+                mRetrofitCallMap.get(key).add(call);
+            }
+        }
+        sendLocalRequest(call, listener);
+    }
+
     public static <T extends LocalResponse<D>, D> void sendLocalRequest(Call<T> call, final LocalResponseListener<D> listener) {
         call.enqueue(new Callback<T>() {
 
@@ -188,6 +204,15 @@ public class RetrofitService {
                 listener.onFailed(-100, t.toString());
             }
         });
+    }
+
+    public static void removeCurrentCall(Activity activity) {
+        String key = activity.getPackageName() + activity.getLocalClassName();
+        if (mRetrofitCallMap.containsKey(key)) {
+            for (Call call : mRetrofitCallMap.get(key)) {
+                call.cancel();
+            }
+        }
     }
 
     public interface LocalResponseListener<D> {
