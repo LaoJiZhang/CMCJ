@@ -155,9 +155,12 @@ public class RetrofitService {
         if (!mRetrofitCallMap.containsKey(activity)) {
             String key = activity.getPackageName() + activity.getLocalClassName();
             mRetrofitCallMap.put(key, new ArrayList<Call<?>>());
-            if (!mRetrofitCallMap.get(key).contains(call)) {
-                mRetrofitCallMap.get(key).add(call);
+            if (mRetrofitCallMap.get(key).contains(call)) {
+                int index = mRetrofitCallMap.get(key).indexOf(call);
+                mRetrofitCallMap.get(key).get(index).cancel();
+                mRetrofitCallMap.get(key).remove(index);
             }
+            mRetrofitCallMap.get(key).add(call);
         }
         sendLocalRequest(call, listener);
     }

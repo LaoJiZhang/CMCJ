@@ -2,7 +2,6 @@ package com.cmcj.gmj.localapp.main;
 
 import android.view.View;
 
-import com.cmcj.gmj.localapp.base.network.LocalResponse;
 import com.cmcj.gmj.localapp.base.network.RetrofitService;
 import com.cmcj.gmj.localapp.base.presenter.BaseDatabindingPresenter;
 import com.cmcj.gmj.localapp.base.view.IBaseView;
@@ -10,20 +9,15 @@ import com.cmcj.gmj.localapp.main.modle.MovieResponse;
 import com.cmcj.gmj.localapp.utils.LogUtils;
 import com.cmcj.gmj.localapp.utils.ToastUtils;
 
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-
-import retrofit2.Call;
 
 /**
  * Created by guomaojian on 16/9/28.
  */
 
 public class MainPresenter extends BaseDatabindingPresenter<IMain, MainActivity> {
-
-    private List<Call> mCalls = new ArrayList<>();
 
     public MainPresenter(IBaseView view) {
         super(view);
@@ -62,9 +56,7 @@ public class MainPresenter extends BaseDatabindingPresenter<IMain, MainActivity>
         final Map<String, String> queryMap = new HashMap<>();
         queryMap.put("key", "dc1514f5fb78c2001153f0d280333228");
         queryMap.put("title", "哥斯拉");
-        Call<LocalResponse<List<MovieResponse>>> movieCall = RetrofitService.getAPIService().loadingMovies(queryMap);
-        mCalls.add(movieCall);
-        RetrofitService.sendLocalRequest(getActivity(), movieCall, new RetrofitService.LocalResponseListener<List<MovieResponse>>() {
+        RetrofitService.sendLocalRequest(getActivity(), RetrofitService.getAPIService().loadingMovies(queryMap), new RetrofitService.LocalResponseListener<List<MovieResponse>>() {
             @Override
             public void onSuccessed(List<MovieResponse> data) {
                 getActivity().finish();
