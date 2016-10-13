@@ -7,6 +7,7 @@ import com.cmcj.gmj.localapp.APIService;
 import com.cmcj.gmj.localapp.application.LocalAppConfig;
 import com.cmcj.gmj.localapp.application.LocalApplication;
 import com.cmcj.gmj.localapp.utils.LogUtils;
+import com.facebook.stetho.okhttp3.StethoInterceptor;
 
 import java.io.IOException;
 import java.util.HashMap;
@@ -136,6 +137,7 @@ public class RetrofitService {
                 .addInterceptor(mCacheHeaderInterceptor)
                 .addInterceptor(mAddParamsInterceptor)
                 .addNetworkInterceptor(mAddHeaderTypeInterceptor)
+                .addNetworkInterceptor(new StethoInterceptor())
                 .addNetworkInterceptor(mRequestLogInterceptor());
         return mHttpClientBuilder.build();
     }
