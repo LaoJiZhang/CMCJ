@@ -1,10 +1,12 @@
-package com.cmcj.gmj.localapp.main;
+package com.cmcj.gmj.localapp.main.presenter;
 
 import android.view.View;
 
 import com.cmcj.gmj.localapp.base.network.RetrofitService;
 import com.cmcj.gmj.localapp.base.presenter.BaseDatabindingPresenter;
 import com.cmcj.gmj.localapp.base.view.IBaseView;
+import com.cmcj.gmj.localapp.main.view.IMain;
+import com.cmcj.gmj.localapp.main.view.MainActivity;
 import com.cmcj.gmj.localapp.main.modle.MovieResponse;
 import com.cmcj.gmj.localapp.utils.LogUtils;
 import com.cmcj.gmj.localapp.utils.ToastUtils;
