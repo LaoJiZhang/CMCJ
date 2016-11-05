@@ -8,7 +8,12 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.cmcj.gmj.localapp.R;
+import com.cmcj.gmj.localapp.base.activity.BaseDataBindingActivity;
 import com.cmcj.gmj.localapp.base.presenter.BaseDatabindingFragmentPresenter;
+import com.cmcj.gmj.localapp.databinding.FragmentLayoutBinding;
+
+import org.greenrobot.eventbus.EventBus;
 
 /**
  * Created by guomaojian on 16/11/5.
@@ -17,8 +22,10 @@ import com.cmcj.gmj.localapp.base.presenter.BaseDatabindingFragmentPresenter;
 public abstract class BaseDatabindingFragment<P extends BaseDatabindingFragmentPresenter> extends BaseFragment<P> {
 
     private FragmentProxy mFragmentProxy;
-    private ViewDataBinding mBinding;
+    private FragmentLayoutBinding mFragmentLayoutBinding;
+    private ViewDataBinding mContentBinding;
     private P mPresenter;
+    private BaseDataBindingActivity.ActivityFlag mActivityFlag;
 
     protected abstract FragmentProxy createFragmentProxy();
 
@@ -34,14 +41,23 @@ public abstract class BaseDatabindingFragment<P extends BaseDatabindingFragmentP
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         getPresenter().onCreateView();
-        mBinding = DataBindingUtil.inflate(inflater, mFragmentProxy.getRestId(), container, false);
-        return mBinding.getRoot();
+        mFragmentLayoutBinding = DataBindingUtil.inflate(inflater, R.layout.fragment_layout, container, false);
+        mFragmentLayoutBinding.setFlag(createActivityFlag());
+        mFragmentLayoutBinding.publicErrNetwork.refreshRetryBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                EventBus.getDefault().post(this);
+            }
+        });
+        mContentBinding = DataBindingUtil.inflate(inflater, mFragmentProxy.getRestId(), null, false);
+        mFragmentLayoutBinding.publicContent.addView(mContentBinding.getRoot());
+        return mFragmentLayoutBinding.getRoot();
     }
 
     @Override
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         getPresenter().onViewCreated();
-        mFragmentProxy.finishCreateView(mBinding);
+        mFragmentProxy.finishCreateView(mContentBinding);
         super.onViewCreated(view, savedInstanceState);
     }
 
@@ -74,6 +90,37 @@ public abstract class BaseDatabindingFragment<P extends BaseDatabindingFragmentP
         super.onDestroy();
         getPresenter().OnDestory();
     }
+
+    public BaseDataBindingActivity.ActivityFlag createActivityFlag() {
+        mActivityFlag = new BaseDataBindingActivity.ActivityFlag(BaseDataBindingActivity.ActivityFlag.STATE_NORMAL);
+        return mActivityFlag;
+    }
+
+    public void showLoadingPage() {
+        mActivityFlag.flag = BaseDataBindingActivity.ActivityFlag.STATE_LOADING;
+        mFragmentLayoutBinding.setFlag(mActivityFlag);
+    }
+
+    public void showNormalPage() {
+        mActivityFlag.flag = BaseDataBindingActivity.ActivityFlag.STATE_NORMAL;
+        mFragmentLayoutBinding.setFlag(mActivityFlag);
+    }
+
+    public void showErrorPage() {
+        mActivityFlag.flag = BaseDataBindingActivity.ActivityFlag.STATE_ERROR;
+        mFragmentLayoutBinding.setFlag(mActivityFlag);
+    }
+
+    public void showErrNetworkPage() {
+        mActivityFlag.flag = BaseDataBindingActivity.ActivityFlag.STATE_ERR_NETWORK;
+        mFragmentLayoutBinding.setFlag(mActivityFlag);
+    }
+
+    public void showEmptyPage() {
+        mActivityFlag.flag = BaseDataBindingActivity.ActivityFlag.STATE_EMPTY;
+        mFragmentLayoutBinding.setFlag(mActivityFlag);
+    }
+
 
     @Override
     protected P getPresenter() {

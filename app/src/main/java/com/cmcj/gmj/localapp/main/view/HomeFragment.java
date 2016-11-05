@@ -7,7 +7,6 @@ import com.cmcj.gmj.localapp.base.fragment.BaseDatabindingFragment;
 import com.cmcj.gmj.localapp.base.presenter.BaseDatabindingFragmentPresenter;
 import com.cmcj.gmj.localapp.databinding.FragmentHomeBinding;
 import com.cmcj.gmj.localapp.main.presenter.HomePresenter;
-import com.cmcj.gmj.localapp.utils.LogUtils;
 
 /**
  * Created by guomaojian on 16/11/5.
@@ -33,7 +32,12 @@ public class HomeFragment extends BaseDatabindingFragment<HomePresenter> impleme
             @Override
             public void finishCreateView(ViewDataBinding binding) {
                 mBinding = (FragmentHomeBinding) binding;
-                LogUtils.i("aaa");
+                mBinding.getRoot().postDelayed(new Runnable() {
+                    @Override
+                    public void run() {
+                        showErrorPage();
+                    }
+                }, 3000);
             }
         };
     }

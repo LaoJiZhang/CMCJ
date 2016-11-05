@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:bind="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+        <import type="android.view.View"/>
+
+        <import type="com.cmcj.gmj.localapp.base.activity.BaseDataBindingActivity.ActivityTitleInfo"/>
+
+        <variable
+            name="info"
+            type="ActivityTitleInfo"/>
+
+        <variable
+            name="flag"
+            type="com.cmcj.gmj.localapp.base.activity.BaseDataBindingActivity.ActivityFlag"/>
+    </data>
+
+    <android.support.v4.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:fillViewport="true">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <!-- loading 页 -->
+            <include
+                layout="@layout/activity_layout_loading"
+                bind:flag="@{flag}"/>
+
+            <!-- content 页 -->
+            <FrameLayout
+                android:id="@+id/public_content"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:visibility="@{flag.flag == flag.STATE_NORMAL ? View.VISIBLE : View.GONE , default = visible}"/>
+
+            <!-- 无网络 页 -->
+            <include
+                android:id="@+id/public_err_network"
+                layout="@layout/activity_layout_err_network"
+                bind:flag="@{flag}"/>
+
+            <!-- 无数据 页 -->
+            <include
+                android:id="@+id/public_empty"
+                layout="@layout/activity_layout_empty"
+                bind:flag="@{flag}"/>
+
+            <!-- 错误 页 -->
+            <include
+                android:id="@+id/public_error"
+                layout="@layout/activity_layout_error"
+                bind:flag="@{flag}"/>
+        </LinearLayout>
+    </android.support.v4.widget.NestedScrollView>
+</layout>
