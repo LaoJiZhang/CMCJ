@@ -3,8 +3,8 @@ package com.cmcj.gmj.localapp.main.view;
 import android.databinding.ViewDataBinding;
 
 import com.cmcj.gmj.localapp.R;
-import com.cmcj.gmj.localapp.base.fragment.BaseDatabindingFragment;
-import com.cmcj.gmj.localapp.base.presenter.BaseDatabindingFragmentPresenter;
+import com.cmcj.gmj.localapp.base.component.BaseDatabindingFragment;
+import com.cmcj.gmj.localapp.base.presenter.BaseFragmentDatabindingPresenter;
 import com.cmcj.gmj.localapp.databinding.FragmentHomeBinding;
 import com.cmcj.gmj.localapp.main.presenter.HomePresenter;
 
@@ -20,7 +20,7 @@ public class HomeFragment extends BaseDatabindingFragment<HomePresenter> impleme
     protected FragmentProxy createFragmentProxy() {
         return new FragmentProxy() {
             @Override
-            public BaseDatabindingFragmentPresenter createPresenter() {
+            public BaseFragmentDatabindingPresenter createPresenter() {
                 return new HomePresenter(HomeFragment.this);
             }
 
@@ -32,13 +32,13 @@ public class HomeFragment extends BaseDatabindingFragment<HomePresenter> impleme
             @Override
             public void finishCreateView(ViewDataBinding binding) {
                 mBinding = (FragmentHomeBinding) binding;
-                mBinding.getRoot().postDelayed(new Runnable() {
-                    @Override
-                    public void run() {
-                        showErrorPage();
-                    }
-                }, 3000);
+                getPresenter().getDouBanTop250();
             }
         };
+    }
+
+    @Override
+    public void setContent(String content) {
+        mBinding.content.setText(content);
     }
 }

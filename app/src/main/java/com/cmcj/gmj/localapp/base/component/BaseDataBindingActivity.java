@@ -1,4 +1,8 @@
-package com.cmcj.gmj.localapp.base.activity;
+package com.cmcj.gmj.localapp.base.component;
+
+/**
+ * Created by guomaojian on 16/9/28.
+ */
 
 import android.databinding.DataBindingUtil;
 import android.databinding.ViewDataBinding;

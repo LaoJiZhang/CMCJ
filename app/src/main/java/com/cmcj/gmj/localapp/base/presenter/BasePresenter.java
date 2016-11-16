@@ -1,10 +1,9 @@
 package com.cmcj.gmj.localapp.base.presenter;
 
-import com.cmcj.gmj.localapp.base.activity.BaseActivity;
+import com.cmcj.gmj.localapp.base.component.BaseActivity;
 import com.cmcj.gmj.localapp.base.network.RetrofitService;
-import com.cmcj.gmj.localapp.base.view.IBaseView;
-
-import org.greenrobot.eventbus.EventBus;
+import com.cmcj.gmj.localapp.base.view.IAndroidView;
+import com.cmcj.gmj.localapp.utils.LogUtils;
 
 import java.lang.ref.WeakReference;
 
@@ -12,12 +11,12 @@ import java.lang.ref.WeakReference;
  * Created by guomaojian on 16/9/28.
  */
 
-public class BasePresenter<V extends IBaseView, A extends BaseActivity> {
+public abstract class BasePresenter<V extends IAndroidView, A extends BaseActivity> {
 
-    private WeakReference<IBaseView> mWefView;
+    private WeakReference<V> mWefView;
 
-    public BasePresenter(IBaseView view) {
-        mWefView = new WeakReference<>(view);
+    public BasePresenter(V view) {
+        mWefView = (WeakReference<V>) new WeakReference<>(view);
     }
 
     public V getView() {
@@ -25,33 +24,37 @@ public class BasePresenter<V extends IBaseView, A extends BaseActivity> {
     }
 
     public boolean isAttachView() {
-        return getView() != null;
+        return getView() != null && getActivity() != null && !getActivity().isFinishing();
     }
 
+    public abstract A getActivity(WeakReference<V> wefView);
+
     public A getActivity() {
-        if (mWefView.get() != null)
-            return (A) mWefView.get();
-        return null;
+        return getActivity(mWefView);
     }
 
     public void onCreate() {
-        EventBus.getDefault().register(getActivity());
+        LogUtils.i(this.getClass().toString() + "onCreate");
     }
 
     public void onStart() {
+        LogUtils.i(this.getClass().toString() + "onStart");
     }
 
     public void onResume() {
+        LogUtils.i(this.getClass().toString() + "onResume");
     }
 
     public void onPause() {
+        LogUtils.i(this.getClass().toString() + "onPause");
     }
 
     public void onStop() {
+        LogUtils.i(this.getClass().toString() + "onStop");
     }
 
     public void onDestroy() {
-        EventBus.getDefault().unregister(getActivity());
+        LogUtils.i(this.getClass().toString() + "onDestroy");
         RetrofitService.removeCurrentCall(getActivity());
     }
 }

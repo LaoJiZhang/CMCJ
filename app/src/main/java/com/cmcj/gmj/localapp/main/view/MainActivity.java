@@ -7,7 +7,7 @@ import android.view.View;
 import android.widget.Toast;
 
 import com.cmcj.gmj.localapp.R;
-import com.cmcj.gmj.localapp.base.activity.BaseDataBindingActivity;
+import com.cmcj.gmj.localapp.base.component.BaseDataBindingActivity;
 import com.cmcj.gmj.localapp.base.presenter.BasePresenter;
 import com.cmcj.gmj.localapp.databinding.ActivityMainBinding;
 import com.cmcj.gmj.localapp.main.adapter.MainPagerAdapter;
@@ -46,8 +46,6 @@ public class MainActivity extends BaseDataBindingActivity<MainPresenter> impleme
 
                 initData();
                 configView();
-//                getPresenter().getStr();
-//                showErrNetworkPage();
             }
         };
     }
@@ -92,7 +90,7 @@ public class MainActivity extends BaseDataBindingActivity<MainPresenter> impleme
         Toast.makeText(MainActivity.this, "再试一次123", Toast.LENGTH_SHORT).show();
         showNormalPage();
         switchTab(MainActivity.MainTab.MAIN_HOME);
-        getPresenter().movieRequest();
+//        getPresenter().movieRequest();
     }
 
     @Override

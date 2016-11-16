@@ -1,35 +1,45 @@
 package com.cmcj.gmj.localapp.base.presenter;
 
-import com.cmcj.gmj.localapp.base.activity.BaseActivity;
-import com.cmcj.gmj.localapp.base.view.IBaseFragmentView;
+import android.support.v4.app.Fragment;
+
+import com.cmcj.gmj.localapp.base.component.BaseActivity;
+import com.cmcj.gmj.localapp.base.view.IFragmentView;
+import com.cmcj.gmj.localapp.utils.LogUtils;
+
+import java.lang.ref.WeakReference;
 
 /**
  * Created by guomaojian on 16/11/5.
  */
 
-public abstract class BaseFragmentPresenter<V extends IBaseFragmentView, A extends BaseActivity> {
+public class BaseFragmentPresenter<V extends IFragmentView, A extends BaseActivity> extends BasePresenter<V, A> {
 
-    public abstract void finishCreatedPresenter();
+    public BaseFragmentPresenter(V view) {
+        super(view);
+    }
 
-    public abstract boolean isViewAttach();
+    @Override
+    public A getActivity(WeakReference<V> wefView) {
+        if (wefView != null && wefView.get() != null) {
+            return (A) ((Fragment) wefView.get()).getActivity();
+        }
+        return null;
+    }
 
-    public abstract V getView();
+    public void onCreateView() {
+        LogUtils.i(this.getClass().toString() + "onCreateView");
+    }
 
-    public abstract A getActivity();
+    public void onViewCreated() {
+        LogUtils.i(this.getClass().toString() + "onViewCreated");
+    }
 
-    public abstract void onCreate();
+    public void onDestroyView() {
+        LogUtils.i(this.getClass().toString() + "onDestroyView");
+    }
 
-    public abstract void onCreateView();
+    public void onDetach() {
+        LogUtils.i(this.getClass().toString() + "onDetach");
+    }
 
-    public abstract void onViewCreated();
-
-    public abstract void onStart();
-
-    public abstract void onResume();
-
-    public abstract void onPause();
-
-    public abstract void onStop();
-
-    public abstract void OnDestory();
 }

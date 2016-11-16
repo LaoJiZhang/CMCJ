@@ -2,12 +2,16 @@ package com.cmcj.gmj.localapp.main.presenter;
 
 import android.view.View;
 
+import com.cmcj.gmj.localapp.base.LocalSubscriber;
+import com.cmcj.gmj.localapp.base.network.DouBanResponse;
+import com.cmcj.gmj.localapp.base.network.LocalResponse;
+import com.cmcj.gmj.localapp.base.network.RequestParamsFactory;
 import com.cmcj.gmj.localapp.base.network.RetrofitService;
-import com.cmcj.gmj.localapp.base.presenter.BaseDatabindingPresenter;
-import com.cmcj.gmj.localapp.base.view.IBaseView;
+import com.cmcj.gmj.localapp.base.presenter.BaseActivityDatabindingPresenter;
+import com.cmcj.gmj.localapp.main.modle.MovieEntity;
+import com.cmcj.gmj.localapp.main.modle.MovieResponse;
 import com.cmcj.gmj.localapp.main.view.IMain;
 import com.cmcj.gmj.localapp.main.view.MainActivity;
-import com.cmcj.gmj.localapp.main.modle.MovieResponse;
 import com.cmcj.gmj.localapp.utils.LogUtils;
 import com.cmcj.gmj.localapp.utils.ToastUtils;
 
@@ -15,13 +19,21 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import retrofit2.Call;
+import rx.Observable;
+import rx.Subscriber;
+
+import static com.cmcj.gmj.localapp.base.network.RetrofitService.getAPIService;
+
 /**
  * Created by guomaojian on 16/9/28.
  */
 
-public class MainPresenter extends BaseDatabindingPresenter<IMain, MainActivity> {
+public class MainPresenter extends BaseActivityDatabindingPresenter<IMain, MainActivity> {
 
-    public MainPresenter(IBaseView view) {
+    private static String TAG = MainPresenter.class.getSimpleName();
+
+    public MainPresenter(IMain view) {
         super(view);
     }
 
@@ -58,11 +70,11 @@ public class MainPresenter extends BaseDatabindingPresenter<IMain, MainActivity>
         final Map<String, String> queryMap = new HashMap<>();
         queryMap.put("key", "dc1514f5fb78c2001153f0d280333228");
         queryMap.put("title", "哥斯拉");
-        RetrofitService.sendLocalRequest(getActivity(), RetrofitService.getAPIService().loadingMovies(queryMap), new RetrofitService.LocalResponseListener<List<MovieResponse>>() {
+        Call<LocalResponse<List<MovieResponse>>> call = getAPIService().loadingMovies(queryMap);
+        RetrofitService.sendLocalRequest(getActivity(), call, new RetrofitService.LocalResponseListener<List<MovieResponse>>() {
             @Override
             public void onSuccessed(List<MovieResponse> data) {
                 getActivity().finish();
-                LogUtils.i("aaa");
                 for (MovieResponse item : data)
                     LogUtils.i("onResponse       " + item.toString());
             }
@@ -72,5 +84,18 @@ public class MainPresenter extends BaseDatabindingPresenter<IMain, MainActivity>
                 LogUtils.i("errorCode = " + errorCode + "    errMsg = " + errMsg);
             }
         });
+    }
+
+    public void getDouBanTop250() {
+        Observable<DouBanResponse<List<MovieEntity>>> observable = RetrofitService.getAPIService().loadingDouBanTop250(RequestParamsFactory.getDouBanTop250Params());
+
+        Subscriber<List<MovieEntity>> subscriber = new LocalSubscriber<List<MovieEntity>, MainActivity>(this) {
+            @Override
+            public void onSuccess(List<MovieEntity> data) {
+                for (MovieEntity item : data)
+                    LogUtils.i(TAG, "onNext : " + item.toString());
+            }
+        };
+        RetrofitService.commonRequest(observable, subscriber);
     }
 }

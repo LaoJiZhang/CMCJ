@@ -25,7 +25,13 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 import retrofit2.Retrofit;
+import retrofit2.adapter.rxjava.RxJavaCallAdapterFactory;
 import retrofit2.converter.gson.GsonConverterFactory;
+import rx.Observable;
+import rx.Subscriber;
+import rx.android.schedulers.AndroidSchedulers;
+import rx.functions.Func1;
+import rx.schedulers.Schedulers;
 
 /**
  * Created by guomaojian on 16/10/12.
@@ -73,6 +79,7 @@ public class RetrofitService {
             Retrofit retrofit = new Retrofit.Builder()
                     .baseUrl(host)
                     .addConverterFactory(GsonConverterFactory.create())
+                    .addCallAdapterFactory(RxJavaCallAdapterFactory.create())
                     .client(createHttpClient())
                     .build();
             mRetrofitMap.put(host, retrofit);
@@ -128,7 +135,6 @@ public class RetrofitService {
                 LogUtils.i(TAG, request.headers().toString());
                 LogUtils.i(TAG, "method : " + request.method() + "  url : " + request.url().url());
                 okhttp3.Response response = chain.proceed(request);
-                LogUtils.i(TAG, response.headers().toString());
                 return response;
             }
         };
@@ -223,5 +229,17 @@ public class RetrofitService {
         void onSuccessed(D data);
 
         void onFailed(int errorCode, String errMsg);
+    }
+
+    public static <D extends Object> void commonRequest(Observable<DouBanResponse<D>> observable, Subscriber subscriber) {
+        observable
+                .map(new Func1<DouBanResponse<D>, Object>() {
+                    @Override
+                    public Object call(DouBanResponse<D> response) {
+                        return response.getSubjects();
+                    }
+                }).subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(subscriber);
     }
 }

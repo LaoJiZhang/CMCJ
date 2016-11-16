@@ -7,7 +7,7 @@
 
         <variable
             name="titleInfo"
-            type="com.cmcj.gmj.localapp.base.activity.BaseDataBindingActivity.ActivityTitleInfo"/>
+            type="com.cmcj.gmj.localapp.base.component.BaseDataBindingActivity.ActivityTitleInfo"/>
     </data>
 
     <LinearLayout

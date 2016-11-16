@@ -1,4 +1,4 @@
-package com.cmcj.gmj.localapp.base.fragment;
+package com.cmcj.gmj.localapp.base.component;
 
 import android.databinding.DataBindingUtil;
 import android.databinding.ViewDataBinding;
@@ -9,22 +9,21 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.cmcj.gmj.localapp.R;
-import com.cmcj.gmj.localapp.base.activity.BaseDataBindingActivity;
-import com.cmcj.gmj.localapp.base.presenter.BaseDatabindingFragmentPresenter;
+import com.cmcj.gmj.localapp.base.presenter.BaseFragmentDatabindingPresenter;
 import com.cmcj.gmj.localapp.databinding.FragmentLayoutBinding;
 
 import org.greenrobot.eventbus.EventBus;
+
 
 /**
  * Created by guomaojian on 16/11/5.
  */
 
-public abstract class BaseDatabindingFragment<P extends BaseDatabindingFragmentPresenter> extends BaseFragment<P> {
+public abstract class BaseDatabindingFragment<P extends BaseFragmentDatabindingPresenter> extends BaseFragment<P> {
 
     private FragmentProxy mFragmentProxy;
     private FragmentLayoutBinding mFragmentLayoutBinding;
     private ViewDataBinding mContentBinding;
-    private P mPresenter;
     private BaseDataBindingActivity.ActivityFlag mActivityFlag;
 
     protected abstract FragmentProxy createFragmentProxy();
@@ -88,7 +87,7 @@ public abstract class BaseDatabindingFragment<P extends BaseDatabindingFragmentP
     @Override
     public void onDestroy() {
         super.onDestroy();
-        getPresenter().OnDestory();
+        getPresenter().onDestroy();
     }
 
     public BaseDataBindingActivity.ActivityFlag createActivityFlag() {
@@ -121,13 +120,7 @@ public abstract class BaseDatabindingFragment<P extends BaseDatabindingFragmentP
         mFragmentLayoutBinding.setFlag(mActivityFlag);
     }
 
-
-    @Override
-    protected P getPresenter() {
-        return mPresenter;
-    }
-
-    public interface FragmentProxy<P extends BaseDatabindingFragmentPresenter> {
+    public interface FragmentProxy<P extends BaseFragmentDatabindingPresenter> {
 
         P createPresenter();
 

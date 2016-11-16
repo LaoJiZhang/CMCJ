@@ -6,7 +6,7 @@
 
         <import type="android.view.View"/>
 
-        <import type="com.cmcj.gmj.localapp.base.activity.BaseDataBindingActivity.ActivityTitleInfo"/>
+        <import type="com.cmcj.gmj.localapp.base.component.BaseDataBindingActivity.ActivityTitleInfo"/>
 
         <variable
             name="info"
@@ -14,7 +14,7 @@
 
         <variable
             name="flag"
-            type="com.cmcj.gmj.localapp.base.activity.BaseDataBindingActivity.ActivityFlag"/>
+            type="com.cmcj.gmj.localapp.base.component.BaseDataBindingActivity.ActivityFlag"/>
     </data>
 
     <android.support.v4.widget.NestedScrollView
