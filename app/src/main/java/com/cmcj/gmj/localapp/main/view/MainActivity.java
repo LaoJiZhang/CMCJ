@@ -52,9 +52,9 @@ public class MainActivity extends BaseDataBindingActivity<MainPresenter> impleme
 
     private void initData() {
         mFragments.add(new HomeFragment());
-        mFragments.add(new HomeFragment());
-        mFragments.add(new HomeFragment());
-        mFragments.add(new HomeFragment());
+        mFragments.add(new Fragment());
+        mFragments.add(new Fragment());
+        mFragments.add(new Fragment());
     }
 
     private void configView() {

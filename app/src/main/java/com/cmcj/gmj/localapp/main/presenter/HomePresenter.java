@@ -26,16 +26,17 @@ public class HomePresenter extends BaseFragmentDatabindingPresenter<IHome, MainA
     }
 
     public void getDouBanTop250() {
-//        Observable.create(new Observable.OnSubscribe<String>() {
-//            @Override
-//            public void call(Subscriber<? super String> subscriber) {
         mHomeModle.getDouBanTop250(HomePresenter.this);
-//            }
-//        }).subscribe(new Action1<String>() {
-//            @Override
-//            public void call(String s) {
-//                LogUtils.i("AAA");
-//            }
-//        });
+    }
+
+    public void setContent(String content) {
+        if (isAttachView())
+            getView().setContent(content);
+    }
+
+    @Override
+    public void onDestroyView() {
+        super.onDestroyView();
+        mHomeModle.onDestory();
     }
 }

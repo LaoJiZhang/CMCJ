@@ -19,13 +19,14 @@ import static android.content.ContentValues.TAG;
  * Created by guomaojian on 16/11/16.
  */
 
-public class HomeModel implements IHomeModel {
+public class HomeModel extends IHomeModel {
+    private Subscriber<List<MovieEntity>> mSubscriber;
 
     @Override
     public void getDouBanTop250(final HomePresenter presenter) {
         Observable<DouBanResponse<List<MovieEntity>>> observable = RetrofitService.getAPIService().loadingDouBanTop250(RequestParamsFactory.getDouBanTop250Params());
 
-        Subscriber<List<MovieEntity>> subscriber = new LocalSubscriber<List<MovieEntity>, MainActivity>(presenter) {
+        mSubscriber = new LocalSubscriber<List<MovieEntity>, MainActivity>(presenter) {
             @Override
             public void onSuccess(List<MovieEntity> data) {
                 StringBuilder stringBuilder = new StringBuilder();
@@ -34,10 +35,15 @@ public class HomeModel implements IHomeModel {
                     stringBuilder.append("\n\n\n");
                 }
                 LogUtils.i(TAG, "onNext : " + stringBuilder.toString());
-                if (presenter.isAttachView())
-                    presenter.getView().setContent(stringBuilder.toString());
+                presenter.setContent(stringBuilder.toString());
             }
         };
-        RetrofitService.commonRequest(observable, subscriber);
+        RetrofitService.commonRequest(observable, mSubscriber);
+    }
+
+    @Override
+    public void onDestory() {
+        LogUtils.i("AAA", "subscriber.unsubscribe()");
+        mSubscriber.unsubscribe();
     }
 }

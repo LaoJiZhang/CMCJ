@@ -238,7 +238,9 @@ public class RetrofitService {
                     public Object call(DouBanResponse<D> response) {
                         return response.getSubjects();
                     }
-                }).subscribeOn(Schedulers.io())
+                })
+                .subscribeOn(Schedulers.io())
+                .unsubscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(subscriber);
     }

@@ -1,16 +1,21 @@
 package com.cmcj.gmj.localapp.main.modle;
 
+import com.cmcj.gmj.localapp.base.IModel;
 import com.cmcj.gmj.localapp.main.presenter.HomePresenter;
 
 /**
  * Created by guomaojian on 16/11/16.
  */
 
-public interface IHomeModel {
+public abstract class IHomeModel implements IModel {
 
-    void getDouBanTop250(HomePresenter presenter);
+    public abstract void getDouBanTop250(HomePresenter presenter);
 
-    class Factory {
+    @Override
+    public void onDestory() {
+    }
+
+    public static class Factory {
         public static HomeModel create() {
             return new HomeModel();
         }
