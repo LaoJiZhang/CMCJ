@@ -1,4 +1,5 @@
 apply plugin: 'com.android.application'
+apply plugin: 'org.greenrobot.greendao'
 
 android {
     compileSdkVersion 24
@@ -21,6 +22,11 @@ android {
     dataBinding {
         enabled = true
     }
+
+    greendao {
+        schemaVersion 2
+    }
+
     dependencies {
         compile fileTree(dir: 'libs', include: ['*.jar'])
         androidTestCompile('com.android.support.test.espresso:espresso-core:2.2.2', {
@@ -30,7 +36,7 @@ android {
         compile 'com.android.support:design:24.2.0'
         //EventBus 3.0
         compile 'org.greenrobot:eventbus:3.0.0'
-        //Rxjava
+        //Rxjava + RxAndroid
         compile 'io.reactivex:rxjava:1.2.2'
         compile 'io.reactivex:rxandroid:1.2.1'
         //Retrofit
@@ -52,6 +58,8 @@ android {
         //You can also enable a JavaScript console with:
         compile 'com.facebook.stetho:stetho-js-rhino:1.4.1'
         //Stetho end
+
+        compile 'org.greenrobot:greendao:3.2.0'
 
         testCompile 'junit:junit:4.12'
         testCompile "org.mockito:mockito-core:2.2.17"

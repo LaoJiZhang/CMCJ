@@ -1,6 +1,7 @@
 package com.cmcj.gmj.localapp.main.presenter;
 
 import com.cmcj.gmj.localapp.base.presenter.BaseFragmentDatabindingPresenter;
+import com.cmcj.gmj.localapp.database.dao.UserDao;
 import com.cmcj.gmj.localapp.main.modle.IHomeModel;
 import com.cmcj.gmj.localapp.main.view.IHome;
 import com.cmcj.gmj.localapp.main.view.MainActivity;
@@ -23,6 +24,13 @@ public class HomePresenter extends BaseFragmentDatabindingPresenter<IHome, MainA
     public void finishCreatedPresenter() {
         LogUtils.i("finishCreatedPresenter");
         mHomeModle = IHomeModel.Factory.create();
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                UserDao dao = new UserDao();
+                dao.insertUser();
+            }
+        }).start();
     }
 
     public void getDouBanTop250() {

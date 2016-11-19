@@ -2,6 +2,7 @@ package com.cmcj.gmj.localapp.application;
 
 import android.app.Application;
 
+import com.cmcj.gmj.localapp.base.database.DBManager;
 import com.cmcj.gmj.localapp.base.network.RetrofitService;
 import com.facebook.stetho.Stetho;
 import com.squareup.leakcanary.LeakCanary;
@@ -35,5 +36,6 @@ public class LocalApplication extends Application {
         }
         // Retrofit 初始化
         RetrofitService.createRetrofit();
+        DBManager.createInstance(this);
     }
 }
