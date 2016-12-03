@@ -51,11 +51,11 @@ public class HomeFragment extends BaseDatabindingFragment<HomePresenter> impleme
     @Override
     public void getMovieSuccess() {
         showNormalPage();
-        mHandler.postDelayed(new Runnable() {
-            @Override
-            public void run() {
-                showErrNetworkPage();
-            }
-        }, 10000);
+//        mHandler.postDelayed(new Runnable() {
+//            @Override
+//            public void run() {
+//                showErrNetworkPage();
+//            }
+//        }, 10000);
     }
 }

@@ -1,5 +1,7 @@
 package com.cmcj.gmj.localapp.base.presenter;
 
+import android.content.Intent;
+
 import com.cmcj.gmj.localapp.base.component.BaseActivity;
 import com.cmcj.gmj.localapp.base.network.RetrofitService;
 import com.cmcj.gmj.localapp.base.view.IAndroidView;
@@ -28,6 +30,10 @@ public abstract class BasePresenter<V extends IAndroidView, A extends BaseActivi
     }
 
     public abstract A getActivity(WeakReference<V> wefView);
+
+    public Intent getIntent() {
+        return getActivity().getIntent();
+    }
 
     public A getActivity() {
         return getActivity(mWefView);

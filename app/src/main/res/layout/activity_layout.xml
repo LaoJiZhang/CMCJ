@@ -46,8 +46,7 @@
             <FrameLayout
                 android:id="@+id/public_content"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
+                android:layout_height="match_parent"
                 android:visibility="@{flag.flag == flag.STATE_NORMAL ? View.VISIBLE : View.GONE , default = visible}"/>
 
             <!-- 无网络 页 -->

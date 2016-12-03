@@ -67,7 +67,15 @@ public abstract class BaseDataBindingActivity<P extends BasePresenter> extends B
 
     public abstract ActivityProxy createActivityProxy();
 
-    public abstract ActivityTitleInfo createTitleInfo();
+    public ActivityTitleInfo createTitleInfo() {
+        mActivityTitleInfo = new ActivityTitleInfo("");
+        return mActivityTitleInfo;
+    }
+
+    public void setActivityTitleInfo(String title) {
+        mActivityTitleInfo.setTitle(title);
+        mBinding.setInfo(mActivityTitleInfo);
+    }
 
     public ActivityFlag createActivityFlag() {
         mActivityFlag = new ActivityFlag(ActivityFlag.STATE_NORMAL);
@@ -133,6 +141,14 @@ public abstract class BaseDataBindingActivity<P extends BasePresenter> extends B
         public ActivityTitleInfo(String title, View.OnClickListener listener) {
             this.title = title;
             this.clickListener = listener;
+        }
+
+        public String getTitle() {
+            return title;
+        }
+
+        public void setTitle(String title) {
+            this.title = title;
         }
     }
 

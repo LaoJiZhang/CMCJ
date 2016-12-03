@@ -11,6 +11,7 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.cmcj.gmj.localapp.R;
+import com.cmcj.gmj.localapp.base.common.RecyclerItemClickListener;
 import com.cmcj.gmj.localapp.databinding.FragHomeListItemLayoutBinding;
 import com.cmcj.gmj.localapp.main.modle.MovieEntity;
 
@@ -25,9 +26,11 @@ public class HomeAdapter extends RecyclerView.Adapter<HomeAdapter.HomeViewHolder
 
     private Context mContext;
     private List<MovieEntity> mDatas = new ArrayList<>();
+    private RecyclerItemClickListener<MovieEntity> mRecyclerItemClickListener;
 
-    public HomeAdapter(Context context) {
+    public HomeAdapter(Context context, RecyclerItemClickListener<MovieEntity> listener) {
         mContext = context;
+        mRecyclerItemClickListener = listener;
     }
 
     public void setDatas(List<MovieEntity> datas) {
@@ -49,8 +52,13 @@ public class HomeAdapter extends RecyclerView.Adapter<HomeAdapter.HomeViewHolder
     @Override
     public void onBindViewHolder(HomeViewHolder holder, int position) {
         FragHomeListItemLayoutBinding binding = (FragHomeListItemLayoutBinding) holder.getViewDataBinding();
-        MovieEntity item = getItem(position);
+        final MovieEntity item = getItem(position);
         binding.setMovie(item);
+
+        if (item.getImages() != null && !TextUtils.isEmpty(item.getImages().getLarge())) {
+//            Uri uri = Uri.parse(item.getImages().getLarge());
+            binding.homeItemPicIv.setImageURI(item.getImages().getLarge());
+        }
 
         if (item.getGenres() != null) {
             binding.homeItemType1Tv.setVisibility(View.GONE);
@@ -64,6 +72,14 @@ public class HomeAdapter extends RecyclerView.Adapter<HomeAdapter.HomeViewHolder
                 }
             }
         }
+
+        binding.homeItem.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (mRecyclerItemClickListener != null)
+                    mRecyclerItemClickListener.onItemClickCall(item);
+            }
+        });
     }
 
     @Override

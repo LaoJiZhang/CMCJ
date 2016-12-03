@@ -21,5 +21,8 @@
                 <category android:name="android.intent.category.LAUNCHER"/>
             </intent-filter>
         </activity>
+
+        <activity android:name=".second.view.SecondActivity"/>
+        <activity android:name=".web.view.WebviewActivity"/>
     </application>
 </manifest>
