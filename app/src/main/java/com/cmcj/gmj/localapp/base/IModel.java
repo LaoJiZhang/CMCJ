@@ -6,5 +6,5 @@ package com.cmcj.gmj.localapp.base;
 
 public interface IModel {
 
-    public void onDestory();
+    void onDestory();
 }

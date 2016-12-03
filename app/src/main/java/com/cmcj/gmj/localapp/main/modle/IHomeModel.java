@@ -1,19 +1,17 @@
 package com.cmcj.gmj.localapp.main.modle;
 
 import com.cmcj.gmj.localapp.base.IModel;
-import com.cmcj.gmj.localapp.main.presenter.HomePresenter;
+import com.cmcj.gmj.localapp.base.network.RetrofitService;
+
+import java.util.List;
 
 /**
  * Created by guomaojian on 16/11/16.
  */
 
-public abstract class IHomeModel implements IModel {
+public interface IHomeModel extends IModel {
 
-    public abstract void getDouBanTop250(HomePresenter presenter);
-
-    @Override
-    public void onDestory() {
-    }
+    void getDouBanTop250(RetrofitService.LocalResponseListener<List<MovieEntity>> listener);
 
     public static class Factory {
         public static HomeModel create() {

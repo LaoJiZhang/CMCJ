@@ -2,13 +2,9 @@ package com.cmcj.gmj.localapp.main.presenter;
 
 import android.view.View;
 
-import com.cmcj.gmj.localapp.base.LocalSubscriber;
-import com.cmcj.gmj.localapp.base.network.DouBanResponse;
 import com.cmcj.gmj.localapp.base.network.LocalResponse;
-import com.cmcj.gmj.localapp.base.network.RequestParamsFactory;
 import com.cmcj.gmj.localapp.base.network.RetrofitService;
 import com.cmcj.gmj.localapp.base.presenter.BaseActivityDatabindingPresenter;
-import com.cmcj.gmj.localapp.main.modle.MovieEntity;
 import com.cmcj.gmj.localapp.main.modle.MovieResponse;
 import com.cmcj.gmj.localapp.main.view.IMain;
 import com.cmcj.gmj.localapp.main.view.MainActivity;
@@ -20,8 +16,6 @@ import java.util.List;
 import java.util.Map;
 
 import retrofit2.Call;
-import rx.Observable;
-import rx.Subscriber;
 
 import static com.cmcj.gmj.localapp.base.network.RetrofitService.getAPIService;
 
@@ -84,18 +78,5 @@ public class MainPresenter extends BaseActivityDatabindingPresenter<IMain, MainA
                 LogUtils.i("errorCode = " + errorCode + "    errMsg = " + errMsg);
             }
         });
-    }
-
-    public void getDouBanTop250() {
-        Observable<DouBanResponse<List<MovieEntity>>> observable = RetrofitService.getAPIService().loadingDouBanTop250(RequestParamsFactory.getDouBanTop250Params());
-
-        Subscriber<List<MovieEntity>> subscriber = new LocalSubscriber<List<MovieEntity>, MainActivity>(this) {
-            @Override
-            public void onSuccess(List<MovieEntity> data) {
-                for (MovieEntity item : data)
-                    LogUtils.i(TAG, "onNext : " + item.toString());
-            }
-        };
-        RetrofitService.commonRequest(observable, subscriber);
     }
 }

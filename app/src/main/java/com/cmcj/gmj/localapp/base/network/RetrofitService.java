@@ -28,8 +28,9 @@ import retrofit2.Retrofit;
 import retrofit2.adapter.rxjava.RxJavaCallAdapterFactory;
 import retrofit2.converter.gson.GsonConverterFactory;
 import rx.Observable;
-import rx.Subscriber;
+import rx.Subscription;
 import rx.android.schedulers.AndroidSchedulers;
+import rx.functions.Action1;
 import rx.functions.Func1;
 import rx.schedulers.Schedulers;
 
@@ -158,9 +159,11 @@ public class RetrofitService {
     public static HashMap<String, List<Call<?>>> mRetrofitCallMap = new HashMap<>();
 
     public static <T extends LocalResponse<D>, D> void sendLocalRequest(Activity activity, Call<T> call, final LocalResponseListener<D> listener) {
-        if (!mRetrofitCallMap.containsKey(activity)) {
-            String key = activity.getPackageName() + activity.getLocalClassName();
+        String key = getCallKey(activity);
+        if (!mRetrofitCallMap.containsKey(key)) {
             mRetrofitCallMap.put(key, new ArrayList<Call<?>>());
+            mRetrofitCallMap.get(key).add(call);
+        } else {
             if (mRetrofitCallMap.get(key).contains(call)) {
                 int index = mRetrofitCallMap.get(key).indexOf(call);
                 mRetrofitCallMap.get(key).get(index).cancel();
@@ -171,7 +174,7 @@ public class RetrofitService {
         sendLocalRequest(call, listener);
     }
 
-    public static <T extends LocalResponse<D>, D> void sendLocalRequest(Call<T> call, final LocalResponseListener<D> listener) {
+    private static <T extends LocalResponse<D>, D> void sendLocalRequest(Call<T> call, final LocalResponseListener<D> listener) {
         call.enqueue(new Callback<T>() {
 
             @Override
@@ -215,8 +218,12 @@ public class RetrofitService {
         });
     }
 
+    private static String getCallKey(Activity activity) {
+        return activity.getPackageName() + activity.getLocalClassName();
+    }
+
     public static void removeCurrentCall(Activity activity) {
-        String key = activity.getPackageName() + activity.getLocalClassName();
+        String key = getCallKey(activity);
         if (mRetrofitCallMap.containsKey(key)) {
             for (Call call : mRetrofitCallMap.get(key)) {
                 call.cancel();
@@ -231,17 +238,35 @@ public class RetrofitService {
         void onFailed(int errorCode, String errMsg);
     }
 
-    public static <D extends Object> void commonRequest(Observable<DouBanResponse<D>> observable, Subscriber subscriber) {
-        observable
-                .map(new Func1<DouBanResponse<D>, Object>() {
+    public static <D> Subscription sendDouBanObservableRequest(Observable observable, final SubscribeRequestProxy<D> subscribeProxy) {
+        Subscription subscription = observable
+                .flatMap(new Func1<DouBanResponse<D>, Observable<D>>() {
                     @Override
-                    public Object call(DouBanResponse<D> response) {
-                        return response.getSubjects();
+                    public Observable<D> call(DouBanResponse<D> response) {
+                        if (response != null && response.getSubjects() != null) {
+                            return Observable.just(response.getSubjects());
+                        }
+                        return null;
                     }
                 })
                 .subscribeOn(Schedulers.io())
                 .unsubscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(subscriber);
+                .subscribe(new Action1<D>() {
+                    @Override
+                    public void call(D d) {
+                        if (d != null)
+                            subscribeProxy.onMainComplete(d);
+                        else
+                            subscribeProxy.onMainError("Observable解析 or 转换失败");
+                    }
+                });
+        return subscription;
+    }
+
+    public interface SubscribeRequestProxy<D> {
+        void onMainComplete(D data);
+
+        void onMainError(String errorMsg);
     }
 }

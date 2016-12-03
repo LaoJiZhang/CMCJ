@@ -19,7 +19,7 @@ public abstract class LocalSubscriber<D extends Object, A extends BaseDataBindin
 
     @Override
     public void onStart() {
-        if (mPresenter.isAttachView()) {
+        if (mPresenter.isViewAttach()) {
             ((A) mPresenter.getActivity()).showLoadingPage();
         }
         super.onStart();
@@ -27,19 +27,19 @@ public abstract class LocalSubscriber<D extends Object, A extends BaseDataBindin
 
     @Override
     public void onCompleted() {
-        if (mPresenter.isAttachView())
+        if (mPresenter.isViewAttach())
             ((A) mPresenter.getActivity()).showNormalPage();
     }
 
     @Override
     public void onError(Throwable e) {
-        if (mPresenter.isAttachView())
+        if (mPresenter.isViewAttach())
             ((A) mPresenter.getActivity()).showErrorPage();
     }
 
     @Override
     public void onNext(Object o) {
-        if (mPresenter.isAttachView()) {
+        if (mPresenter.isViewAttach()) {
             D data = (D) o;
             onSuccess(data);
         }

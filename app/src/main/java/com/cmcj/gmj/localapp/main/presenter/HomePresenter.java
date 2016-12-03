@@ -1,11 +1,14 @@
 package com.cmcj.gmj.localapp.main.presenter;
 
+import com.cmcj.gmj.localapp.base.network.RetrofitService;
 import com.cmcj.gmj.localapp.base.presenter.BaseFragmentDatabindingPresenter;
-import com.cmcj.gmj.localapp.database.dao.UserDao;
+import com.cmcj.gmj.localapp.main.adapter.HomeAdapter;
 import com.cmcj.gmj.localapp.main.modle.IHomeModel;
+import com.cmcj.gmj.localapp.main.modle.MovieEntity;
 import com.cmcj.gmj.localapp.main.view.IHome;
 import com.cmcj.gmj.localapp.main.view.MainActivity;
-import com.cmcj.gmj.localapp.utils.LogUtils;
+
+import java.util.List;
 
 /**
  * Created by guomaojian on 16/11/5.
@@ -15,6 +18,11 @@ public class HomePresenter extends BaseFragmentDatabindingPresenter<IHome, MainA
 
     private static String TAG = HomePresenter.class.getSimpleName();
     private IHomeModel mHomeModle;
+    private HomeAdapter mHomeAdapter = new HomeAdapter(getActivity());
+
+    public HomeAdapter getHomeAdapter() {
+        return mHomeAdapter;
+    }
 
     public HomePresenter(IHome view) {
         super(view);
@@ -22,24 +30,26 @@ public class HomePresenter extends BaseFragmentDatabindingPresenter<IHome, MainA
 
     @Override
     public void finishCreatedPresenter() {
-        LogUtils.i("finishCreatedPresenter");
         mHomeModle = IHomeModel.Factory.create();
-        new Thread(new Runnable() {
-            @Override
-            public void run() {
-                UserDao dao = new UserDao();
-                dao.insertUser();
-            }
-        }).start();
+        getDouBanTop250();
     }
 
     public void getDouBanTop250() {
-        mHomeModle.getDouBanTop250(HomePresenter.this);
-    }
+        mHomeModle.getDouBanTop250(new RetrofitService.LocalResponseListener<List<MovieEntity>>() {
 
-    public void setContent(String content) {
-        if (isAttachView())
-            getView().setContent(content);
+            @Override
+            public void onSuccessed(List<MovieEntity> data) {
+                if (isViewAttach()) {
+                    getHomeAdapter().setDatas(data);
+                    getView().getMovieSuccess();
+                }
+            }
+
+            @Override
+            public void onFailed(int errorCode, String errMsg) {
+
+            }
+        });
     }
 
     @Override

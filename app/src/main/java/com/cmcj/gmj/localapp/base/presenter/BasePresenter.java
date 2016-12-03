@@ -23,7 +23,7 @@ public abstract class BasePresenter<V extends IAndroidView, A extends BaseActivi
         return (V) mWefView.get();
     }
 
-    public boolean isAttachView() {
+    public boolean isViewAttach() {
         return getView() != null && getActivity() != null && !getActivity().isFinishing();
     }
 

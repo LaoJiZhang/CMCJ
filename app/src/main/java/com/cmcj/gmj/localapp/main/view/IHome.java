@@ -8,6 +8,5 @@ import com.cmcj.gmj.localapp.main.presenter.HomePresenter;
  */
 
 public interface IHome extends IFragmentView<HomePresenter> {
-
-    void setContent(String content);
+    void getMovieSuccess();
 }

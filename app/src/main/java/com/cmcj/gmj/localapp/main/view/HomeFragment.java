@@ -1,6 +1,9 @@
 package com.cmcj.gmj.localapp.main.view;
 
 import android.databinding.ViewDataBinding;
+import android.os.Handler;
+import android.support.v7.widget.DefaultItemAnimator;
+import android.support.v7.widget.LinearLayoutManager;
 
 import com.cmcj.gmj.localapp.R;
 import com.cmcj.gmj.localapp.base.component.BaseDatabindingFragment;
@@ -15,6 +18,7 @@ import com.cmcj.gmj.localapp.main.presenter.HomePresenter;
 public class HomeFragment extends BaseDatabindingFragment<HomePresenter> implements IHome {
 
     private FragmentHomeBinding mBinding;
+    private Handler mHandler = new Handler();
 
     @Override
     protected FragmentProxy createFragmentProxy() {
@@ -32,13 +36,26 @@ public class HomeFragment extends BaseDatabindingFragment<HomePresenter> impleme
             @Override
             public void finishCreateView(ViewDataBinding binding) {
                 mBinding = (FragmentHomeBinding) binding;
-                getPresenter().getDouBanTop250();
+                initView();
             }
         };
     }
 
+    private void initView() {
+        showLoadingPage();
+        mBinding.homeRecyclerview.setLayoutManager(new LinearLayoutManager(getActivity()));
+        mBinding.homeRecyclerview.setAdapter(mPresenter.getHomeAdapter());
+        mBinding.homeRecyclerview.setItemAnimator(new DefaultItemAnimator());
+    }
+
     @Override
-    public void setContent(String content) {
-        mBinding.content.setText(content);
+    public void getMovieSuccess() {
+        showNormalPage();
+        mHandler.postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                showErrNetworkPage();
+            }
+        }, 10000);
     }
 }
