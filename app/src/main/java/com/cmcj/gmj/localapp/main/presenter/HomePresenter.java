@@ -2,7 +2,7 @@ package com.cmcj.gmj.localapp.main.presenter;
 
 import android.content.Intent;
 
-import com.cmcj.gmj.localapp.base.common.RecyclerItemClickListener;
+import com.cmcj.gmj.localapp.base.adapter.RecyclerItemClickListener;
 import com.cmcj.gmj.localapp.base.network.RetrofitService;
 import com.cmcj.gmj.localapp.base.presenter.BaseFragmentDatabindingPresenter;
 import com.cmcj.gmj.localapp.main.adapter.HomeAdapter;
@@ -51,7 +51,7 @@ public class HomePresenter extends BaseFragmentDatabindingPresenter<IHome, MainA
             @Override
             public void onSuccessed(List<MovieEntity> data) {
                 if (isViewAttach()) {
-                    getHomeAdapter().setDatas(data);
+                    getHomeAdapter().setBindingDatas(data);
                     getView().getMovieSuccess();
                 }
             }
