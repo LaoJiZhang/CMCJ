@@ -58,7 +58,8 @@ public class HomePresenter extends BaseFragmentDatabindingPresenter<IHome, MainA
 
             @Override
             public void onFailed(int errorCode, String errMsg) {
-
+                if (isViewAttach())
+                    getView().showNetError();
             }
         });
     }

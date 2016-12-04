@@ -47,9 +47,9 @@
                 而前面两种模式基本是需要一起使用的，也就是说，这些flag的使用场景，基本已经固定了。
             -->
 
-            <!--解决自定义Toolbar左侧空白区间属性 注意:app:开头 非android:开始-->
-            <!--app:contentInsetLeft="0dp"-->
-            <!--app:contentInsetStart="0dp"-->
+            <!-- 解决自定义Toolbar左侧空白区间属性 注意:app:开头 非android:开始
+            app:contentInsetLeft="0dp"
+            app:contentInsetStart="0dp" -->
             <android.support.v7.widget.Toolbar
                 android:id="@+id/main_toolbar"
                 android:layout_width="match_parent"
@@ -78,7 +78,6 @@
                         android:text="我是浮动顶部"/>
                 </LinearLayout>
             </android.support.v7.widget.Toolbar>
-
 
             <!--
                    Tabs选项卡，和ViewPager搭配使用可以增大界面的内容展示量，实现各种个性化分类内容展示而不互相干扰！

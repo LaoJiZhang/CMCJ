@@ -11,6 +11,7 @@ import com.cmcj.gmj.localapp.utils.LogUtils;
 import com.facebook.stetho.okhttp3.StethoInterceptor;
 
 import java.io.IOException;
+import java.net.SocketTimeoutException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -259,6 +260,15 @@ public class RetrofitService {
                             subscribeProxy.onMainComplete(d);
                         else
                             subscribeProxy.onMainError("Observable解析 or 转换失败");
+                    }
+                }, new Action1<Throwable>() {
+                    @Override
+                    public void call(Throwable throwable) {
+                        if (throwable instanceof SocketTimeoutException)
+                            subscribeProxy.onMainError("网络连接超时错误");
+                        else
+                            subscribeProxy.onMainError("未知错误");
+                        LogUtils.i("sendDouBanObservableRequest", throwable.toString());
                     }
                 });
         return subscription;
