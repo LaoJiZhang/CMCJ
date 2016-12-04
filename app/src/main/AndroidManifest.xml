@@ -22,7 +22,7 @@
             </intent-filter>
         </activity>
 
-        <activity android:name=".second.view.SecondActivity"/>
-        <activity android:name=".web.view.WebviewActivity"/>
+        <activity android:name=".detail.view.DetailActivity"/>
+        <activity android:name=".detailweb.view.CommonWebActivity"/>
     </application>
 </manifest>
