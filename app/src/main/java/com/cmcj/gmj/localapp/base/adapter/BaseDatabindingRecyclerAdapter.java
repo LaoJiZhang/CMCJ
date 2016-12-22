@@ -18,12 +18,12 @@ import java.util.List;
 public abstract class BaseDatabindingRecyclerAdapter<D> extends RecyclerView.Adapter<BaseDatabindingRecyclerAdapter.DatabindingViewHolder> {
 
     private Context mContext;
-    private DatabindingRecyclerAdapterProxy<D> mDatabindingRecyclerAdapterProxy;
+    private DatabindingRecyclerDelegate<D> mDatabindingRecyclerDelegate;
     private List<D> mBindingDatas = new ArrayList<>();
 
     public BaseDatabindingRecyclerAdapter(Context context) {
         mContext = context;
-        mDatabindingRecyclerAdapterProxy = createRecyclerAdapterProxy();
+        mDatabindingRecyclerDelegate = createRecyclerAdapterProxy();
     }
 
     public void setBindingDatas(List<D> datas) {
@@ -37,17 +37,17 @@ public abstract class BaseDatabindingRecyclerAdapter<D> extends RecyclerView.Ada
         notifyDataSetChanged();
     }
 
-    public abstract DatabindingRecyclerAdapterProxy createRecyclerAdapterProxy();
+    public abstract DatabindingRecyclerDelegate createRecyclerAdapterProxy();
 
     @Override
     public DatabindingViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        ViewDataBinding binding = DataBindingUtil.inflate(LayoutInflater.from(mContext), mDatabindingRecyclerAdapterProxy.getItemLayoutResId(), parent, false);
+        ViewDataBinding binding = DataBindingUtil.inflate(LayoutInflater.from(mContext), mDatabindingRecyclerDelegate.getItemLayoutResId(), parent, false);
         return new DatabindingViewHolder(binding);
     }
 
     @Override
     public void onBindViewHolder(DatabindingViewHolder holder, int position) {
-        mDatabindingRecyclerAdapterProxy.onBindItem(holder.getVHBinding(), getItem(position), position);
+        mDatabindingRecyclerDelegate.onBindItem(holder.getVHBinding(), getItem(position), position);
     }
 
     public D getItem(int position) {
@@ -70,12 +70,5 @@ public abstract class BaseDatabindingRecyclerAdapter<D> extends RecyclerView.Ada
         public ViewDataBinding getVHBinding() {
             return mVHBinding;
         }
-    }
-
-    public interface DatabindingRecyclerAdapterProxy<D> {
-
-        int getItemLayoutResId();
-
-        void onBindItem(ViewDataBinding viewDataBinding, D item, int position);
     }
 }

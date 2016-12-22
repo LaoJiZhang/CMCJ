@@ -7,27 +7,24 @@ import android.view.View;
 import android.widget.TextView;
 
 import com.cmcj.gmj.localapp.R;
-import com.cmcj.gmj.localapp.base.adapter.BaseDatabindingRecyclerAdapter;
-import com.cmcj.gmj.localapp.base.adapter.RecyclerItemClickListener;
+import com.cmcj.gmj.localapp.base.adapter.DatabindingRecyclerDelegate;
+import com.cmcj.gmj.localapp.base.adapter.MultiTypeRecyclerViewAdapter;
 import com.cmcj.gmj.localapp.databinding.FragHomeListItemLayoutBinding;
 import com.cmcj.gmj.localapp.main.modle.MovieEntity;
 
 /**
- * Created by guomaojian on 16/12/4.
+ * Created by guomaojian on 16/12/23.
  */
 
-public class HomeAdapter extends BaseDatabindingRecyclerAdapter<MovieEntity> {
+public class HomeNewAdapte extends MultiTypeRecyclerViewAdapter<MovieEntity> {
 
-    private RecyclerItemClickListener<MovieEntity> mRecyclerItemClickListener;
-
-    public HomeAdapter(Context context, RecyclerItemClickListener<MovieEntity> listener) {
+    public HomeNewAdapte(Context context) {
         super(context);
-        mRecyclerItemClickListener = listener;
     }
 
     @Override
-    public DatabindingRecyclerAdapterProxy createRecyclerAdapterProxy() {
-        return new DatabindingRecyclerAdapterProxy<MovieEntity>() {
+    public DatabindingRecyclerDelegate<MovieEntity> createProxy() {
+        return new DatabindingRecyclerDelegate<MovieEntity>() {
             @Override
             public int getItemLayoutResId() {
                 return R.layout.frag_home_list_item_layout;
@@ -55,13 +52,13 @@ public class HomeAdapter extends BaseDatabindingRecyclerAdapter<MovieEntity> {
                     }
                 }
 
-                binding.homeItem.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        if (mRecyclerItemClickListener != null)
-                            mRecyclerItemClickListener.onItemClickCall(item);
-                    }
-                });
+//                binding.homeItem.setOnClickListener(new View.OnClickListener() {
+//                    @Override
+//                    public void onClick(View v) {
+//                        if (mRecyclerItemClickListener != null)
+//                            mRecyclerItemClickListener.onItemClickCall(item);
+//                    }
+//                });
             }
         };
     }

@@ -13,10 +13,29 @@ android {
         versionName "1.0"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
     }
+
+    signingConfigs {
+        release {
+            keyAlias 'local'
+            keyPassword 'gmj123'
+            storeFile file('../local.jks')
+            storePassword 'gmj123'
+        }
+
+        debug {
+//            keyAlias 'kaochong'
+//            keyPassword 'kaochongaliaspasswordforrelease'
+//            storeFile file('../kcapp.jks')
+//            storePassword 'kaochongkeystorepasswordforrelease'
+        }
+    }
+
     buildTypes {
         release {
-            minifyEnabled false
+            zipAlignEnabled true
+            minifyEnabled true
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+            signingConfig signingConfigs.release
         }
     }
 
