@@ -5,7 +5,7 @@ import android.support.annotation.NonNull;
 import android.text.TextUtils;
 
 import com.cmcj.gmj.localapp.APIService;
-import com.cmcj.gmj.localapp.application.LocalAppConfig;
+import com.cmcj.gmj.localapp.BuildConfig;
 import com.cmcj.gmj.localapp.application.LocalApplication;
 import com.cmcj.gmj.localapp.utils.LogUtils;
 import com.facebook.stetho.okhttp3.StethoInterceptor;
@@ -42,20 +42,21 @@ import rx.schedulers.Schedulers;
 public class RetrofitService {
 
     private static final String TAG = RetrofitService.class.getSimpleName();
+    private static final int CONNET_TIME_OUT = 30;
+
+    public static final int ERROR_CODE = 0;
+    public static final int HTTP_OK = 200;
+    public static final int HTTP_PARTIAL = 206;
+    public static final int HTTP_REDIRECT = 301;
+    public static final int HTTP_FORBIDDEN = 403;
+    public static final int HTTP_NOTFOUND = 404;
+    public static final int HTTP_BADREQUEST = 400;
+    public static final int HTTP_INTERNALERROR = 500;
+    public static final int HTTP_NOTIMPLEMENTED = 501;
+
     public static RetrofitService INSTANCE;
     public static Map<String, Retrofit> mRetrofitMap = new HashMap<>();
     public static APIService mAPIService;
-
-    public static final int
-            ERROR_CODE = 0,
-            HTTP_OK = 200,
-            HTTP_PARTIAL = 206,
-            HTTP_REDIRECT = 301,
-            HTTP_FORBIDDEN = 403,
-            HTTP_NOTFOUND = 404,
-            HTTP_BADREQUEST = 400,
-            HTTP_INTERNALERROR = 500,
-            HTTP_NOTIMPLEMENTED = 501;
 
 
     private RetrofitService() {
@@ -96,7 +97,7 @@ public class RetrofitService {
         @Override
         public okhttp3.Response intercept(Chain chain) throws IOException {
             Request originalRequest = chain.request();
-            String cacheHeaderValue = LocalAppConfig.DEBUG ? "public, max-age=2419200" : "public, only-if-cached, max-stale=2419200";
+            String cacheHeaderValue = BuildConfig.DEBUG ? "public, max-age=2419200" : "public, only-if-cached, max-stale=2419200";
             Request request = originalRequest.newBuilder().build();
             okhttp3.Response response = chain.proceed(request);
             return response.newBuilder().removeHeader("Pragma").removeHeader("Cache-Control").header("Cache-Control", cacheHeaderValue).build();
@@ -144,7 +145,7 @@ public class RetrofitService {
 
     private OkHttpClient createHttpClient() {
         OkHttpClient.Builder mHttpClientBuilder = new OkHttpClient.Builder();
-        mHttpClientBuilder.connectTimeout(LocalAppConfig.CONNET_TIME_OUT, TimeUnit.SECONDS)
+        mHttpClientBuilder.connectTimeout(CONNET_TIME_OUT, TimeUnit.SECONDS)
                 .addInterceptor(mCacheHeaderInterceptor)
                 .addInterceptor(mAddParamsInterceptor)
                 .addNetworkInterceptor(mAddHeaderTypeInterceptor)
