@@ -2,6 +2,7 @@ package com.pansijing.common.base.component;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.v7.app.AppCompatActivity;
 
 import com.pansijing.common.base.presenter.BasePresenter;
 

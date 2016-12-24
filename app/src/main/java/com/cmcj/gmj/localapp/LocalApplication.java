@@ -1,4 +1,4 @@
-package com.cmcj.gmj.localapp.application;
+package com.cmcj.gmj.localapp;
 
 import android.app.Application;
 

@@ -4,6 +4,7 @@ import android.content.Context;
 import android.content.res.Resources;
 import android.content.res.TypedArray;
 import android.databinding.BindingAdapter;
+import android.databinding.DataBindingUtil;
 import android.util.AttributeSet;
 import android.view.LayoutInflater;
 import android.widget.ImageView;
@@ -22,15 +23,6 @@ public class ImgTextView extends LinearLayout {
     private int mUnselectedImgRes;
     private boolean mChecked;
     private String mTxt;
-
-    public int getUnselectedImgRes() {
-        return mUnselectedImgRes;
-    }
-
-    public int getSelectedImgRes() {
-        return mSelectedImgRes;
-    }
-
     private com.pansijing.common.databinding.ViewImageTextLayoutBinding mBinding;
 
     public ImgTextView(Context context, AttributeSet attrs) {
@@ -52,7 +44,6 @@ public class ImgTextView extends LinearLayout {
         mBinding.textImageText.setText(mTxt);
     }
 
-
     @BindingAdapter({"checked"})
     public static void setChecked(ImgTextView imgTextView, boolean checked) {
         if (imgTextView.getSelectedImgRes() == 0 || imgTextView.getUnselectedImgRes() == 0)
@@ -60,5 +51,13 @@ public class ImgTextView extends LinearLayout {
         Resources res = AppUtils.getApplication().getResources();
         ((ImageView) imgTextView.findViewById(R.id.image_image_text)).setImageDrawable(checked ? res.getDrawable(imgTextView.getSelectedImgRes()) : res.getDrawable(imgTextView.getUnselectedImgRes()));
         ((TextView) imgTextView.findViewById(R.id.text_image_text)).setTextColor(checked ? res.getColor(R.color.yellow) : res.getColor(R.color.gray1));
+    }
+
+    public int getUnselectedImgRes() {
+        return mUnselectedImgRes;
+    }
+
+    public int getSelectedImgRes() {
+        return mSelectedImgRes;
     }
 }
