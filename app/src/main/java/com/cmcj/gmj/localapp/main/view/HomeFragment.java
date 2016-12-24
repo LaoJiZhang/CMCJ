@@ -7,14 +7,14 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 
 import com.cmcj.gmj.localapp.R;
-import com.cmcj.gmj.localapp.base.adapter.DatabindingRecyclerDelegate;
-import com.cmcj.gmj.localapp.base.adapter.OnRecyclerViewAttachItemClickListener;
-import com.cmcj.gmj.localapp.base.component.BaseDatabindingFragment;
-import com.cmcj.gmj.localapp.base.presenter.BaseFragmentDatabindingPresenter;
+import com.pansijing.common.base.adapter.DatabindingRecyclerDelegate;
+import com.pansijing.common.base.adapter.OnRecyclerViewAttachItemClickListener;
+import com.pansijing.common.base.component.BaseDatabindingFragment;
+import com.pansijing.common.base.presenter.BaseFragmentDatabindingPresenter;
 import com.cmcj.gmj.localapp.databinding.FragmentHomeBinding;
 import com.cmcj.gmj.localapp.main.presenter.HomePresenter;
-import com.cmcj.gmj.localapp.utils.LogUtils;
-import com.cmcj.gmj.localapp.utils.ToastUtils;
+import com.pansijing.common.utils.LogUtils;
+import com.pansijing.common.utils.ToastUtils;
 
 /**
  * Created by guomaojian on 16/11/5.

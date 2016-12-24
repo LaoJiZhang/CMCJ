@@ -8,11 +8,11 @@ import android.webkit.WebView;
 import android.webkit.WebViewClient;
 
 import com.cmcj.gmj.localapp.R;
-import com.cmcj.gmj.localapp.base.component.BaseDataBindingActivity;
-import com.cmcj.gmj.localapp.base.presenter.BasePresenter;
+import com.pansijing.common.base.component.BaseDataBindingActivity;
+import com.pansijing.common.base.presenter.BasePresenter;
 import com.cmcj.gmj.localapp.databinding.ActivityCommonWebBinding;
 import com.cmcj.gmj.localapp.detailweb.presenter.CommonWebPresenter;
-import com.cmcj.gmj.localapp.utils.LogUtils;
+import com.pansijing.common.utils.LogUtils;
 
 /**
  * Created by guomaojian on 16/12/4.

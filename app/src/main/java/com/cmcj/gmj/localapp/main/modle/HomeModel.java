@@ -1,8 +1,8 @@
 package com.cmcj.gmj.localapp.main.modle;
 
-import com.cmcj.gmj.localapp.base.network.RequestParamsFactory;
-import com.cmcj.gmj.localapp.base.network.RetrofitService;
-import com.cmcj.gmj.localapp.utils.LogUtils;
+import com.pansijing.common.network.RequestParamsFactory;
+import com.pansijing.common.network.RetrofitService;
+import com.pansijing.common.utils.LogUtils;
 
 import java.util.List;
 

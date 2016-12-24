@@ -1,7 +1,7 @@
 package com.cmcj.gmj.localapp.main.modle;
 
-import com.cmcj.gmj.localapp.base.IModel;
-import com.cmcj.gmj.localapp.base.network.RetrofitService;
+import com.pansijing.common.base.IModel;
+import com.pansijing.common.network.RetrofitService;
 
 import java.util.List;
 

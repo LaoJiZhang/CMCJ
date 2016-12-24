@@ -3,8 +3,8 @@ package com.cmcj.gmj.localapp.detail.view;
 import android.databinding.ViewDataBinding;
 
 import com.cmcj.gmj.localapp.R;
-import com.cmcj.gmj.localapp.base.component.BaseDataBindingActivity;
-import com.cmcj.gmj.localapp.base.presenter.BasePresenter;
+import com.pansijing.common.base.component.BaseDataBindingActivity;
+import com.pansijing.common.base.presenter.BasePresenter;
 import com.cmcj.gmj.localapp.detail.presenter.DetailPresenter;
 
 /**

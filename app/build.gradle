@@ -3,7 +3,7 @@ apply plugin: 'org.greenrobot.greendao'
 
 android {
     compileSdkVersion 24
-    buildToolsVersion "24.0.2"
+    buildToolsVersion "24.0.3"
     defaultConfig {
         applicationId "com.cmcj.gmj.localapp"
         minSdkVersion 15
@@ -12,30 +12,30 @@ android {
         versionName "1.0"
     }
 
-    signingConfigs {
-        release {
-            keyAlias 'local'
-            keyPassword 'gmj123'
-            storeFile file('../local.jks')
-            storePassword 'gmj123'
-        }
+//    signingConfigs {
+//        release {
+//            keyAlias 'local'
+//            keyPassword 'gmj123'
+//            storeFile file('../local.jks')
+//            storePassword 'gmj123'
+//        }
+//
+//        debug {
+////            keyAlias 'kaochong'
+////            keyPassword 'kaochongaliaspasswordforrelease'
+////            storeFile file('../kcapp.jks')
+////            storePassword 'kaochongkeystorepasswordforrelease'
+//        }
+//    }
 
-        debug {
-//            keyAlias 'kaochong'
-//            keyPassword 'kaochongaliaspasswordforrelease'
-//            storeFile file('../kcapp.jks')
-//            storePassword 'kaochongkeystorepasswordforrelease'
-        }
-    }
-
-    buildTypes {
-        release {
-            zipAlignEnabled true
-            minifyEnabled true
-            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
-            signingConfig signingConfigs.release
-        }
-    }
+//    buildTypes {
+//        release {
+//            zipAlignEnabled true
+//            minifyEnabled true
+//            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+//            signingConfig signingConfigs.release
+//        }
+//    }
 
     dataBinding {
         enabled = true
@@ -47,40 +47,12 @@ android {
 
     dependencies {
         compile fileTree(dir: 'libs', include: ['*.jar'])
-        androidTestCompile('com.android.support.test.espresso:espresso-core:2.2.2', {
-            exclude group: 'com.android.support', module: 'support-annotations'
-        })
-        compile 'com.android.support:appcompat-v7:24.2.1'
-        compile 'com.android.support:design:24.2.0'
-        //EventBus 3.0
-        compile 'org.greenrobot:eventbus:3.0.0'
-        //Rxjava + RxAndroid
-        compile 'io.reactivex:rxjava:1.2.2'
-        compile 'io.reactivex:rxandroid:1.2.1'
-        //Retrofit
-        compile 'com.squareup.retrofit2:retrofit:2.1.0'
-        compile 'com.squareup.retrofit2:converter-gson:2.1.0'
-        compile 'com.squareup.retrofit2:adapter-rxjava:2.1.0'
-        compile 'com.squareup.okhttp:okhttp:2.4.0'
 
-        //Fresco
-        compile 'com.facebook.fresco:fresco:0.14.1'
+        compile 'com.android.support:appcompat-v7:24.2.0'
 
-        //LeakCanary
-        debugCompile 'com.squareup.leakcanary:leakcanary-android:1.5'
-        releaseCompile 'com.squareup.leakcanary:leakcanary-android-no-op:1.5'
-        testCompile 'com.squareup.leakcanary:leakcanary-android-no-op:1.5'
 
-        //Stetho start
-        compile 'com.facebook.stetho:stetho:1.4.1'
-        //Only the main stetho dependency is strictly required; however, you may also wish to use one of the network helpers:
-        compile 'com.facebook.stetho:stetho-okhttp3:1.4.1'
-//    compile 'com.facebook.stetho:stetho-urlconnection:1.4.1'
-        //You can also enable a JavaScript console with:
-        compile 'com.facebook.stetho:stetho-js-rhino:1.4.1'
-        //Stetho end
 
-        compile 'org.greenrobot:greendao:3.2.0'
+        compile project(':common')
 
     }
 }

@@ -1,6 +1,6 @@
 package com.cmcj.gmj.localapp.detail.presenter;
 
-import com.cmcj.gmj.localapp.base.presenter.BaseActivityDatabindingPresenter;
+import com.pansijing.common.base.presenter.BaseActivityDatabindingPresenter;
 import com.cmcj.gmj.localapp.detail.view.DetailActivity;
 import com.cmcj.gmj.localapp.detail.view.IDetail;
 

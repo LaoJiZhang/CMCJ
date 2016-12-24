@@ -2,12 +2,7 @@ package com.cmcj.gmj.localapp.application;
 
 import android.app.Application;
 
-import com.cmcj.gmj.localapp.base.database.DBManager;
-import com.cmcj.gmj.localapp.base.network.RetrofitService;
-import com.cmcj.gmj.localapp.utils.InitManager;
-import com.facebook.drawee.backends.pipeline.Fresco;
-import com.facebook.stetho.Stetho;
-import com.squareup.leakcanary.LeakCanary;
+import com.pansijing.common.utils.InitManager;
 
 /**
  * Created by guomaojian on 16/10/10.

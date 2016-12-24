@@ -1,7 +1,7 @@
 package com.cmcj.gmj.localapp.main.presenter;
 
-import com.cmcj.gmj.localapp.base.network.RetrofitService;
-import com.cmcj.gmj.localapp.base.presenter.BaseFragmentDatabindingPresenter;
+import com.pansijing.common.network.RetrofitService;
+import com.pansijing.common.base.presenter.BaseFragmentDatabindingPresenter;
 import com.cmcj.gmj.localapp.main.adapter.HomeNewAdapte;
 import com.cmcj.gmj.localapp.main.modle.IHomeModel;
 import com.cmcj.gmj.localapp.main.modle.MovieEntity;

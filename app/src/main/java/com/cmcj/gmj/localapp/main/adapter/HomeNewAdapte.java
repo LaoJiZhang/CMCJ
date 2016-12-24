@@ -7,8 +7,8 @@ import android.view.View;
 import android.widget.TextView;
 
 import com.cmcj.gmj.localapp.R;
-import com.cmcj.gmj.localapp.base.adapter.DatabindingRecyclerDelegate;
-import com.cmcj.gmj.localapp.base.adapter.MultiTypeRecyclerViewAdapter;
+import com.pansijing.common.base.adapter.DatabindingRecyclerDelegate;
+import com.pansijing.common.base.adapter.MultiTypeRecyclerViewAdapter;
 import com.cmcj.gmj.localapp.databinding.FragHomeListItemLayoutBinding;
 import com.cmcj.gmj.localapp.main.modle.MovieEntity;
 

@@ -1,0 +1,59 @@
+apply plugin: 'com.android.library'
+
+android {
+    compileSdkVersion 25
+    buildToolsVersion "25.0.2"
+
+    defaultConfig {
+        minSdkVersion 15
+        targetSdkVersion 25
+        versionCode 1
+        versionName "1.0"
+
+        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+
+    }
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+}
+
+dependencies {
+    compile fileTree(dir: 'libs', include: ['*.jar'])
+    compile 'com.android.support:appcompat-v7:25.1.0'
+    compile 'com.android.support:design:25.1.0'
+
+
+    compile 'org.greenrobot:greendao:3.2.0'
+
+    //EventBus 3.0
+    compile 'org.greenrobot:eventbus:3.0.0'
+    //Rxjava + RxAndroid
+    compile 'io.reactivex:rxjava:1.2.2'
+    compile 'io.reactivex:rxandroid:1.2.1'
+    //Retrofit
+    compile 'com.squareup.retrofit2:retrofit:2.1.0'
+    compile 'com.squareup.retrofit2:converter-gson:2.1.0'
+    compile 'com.squareup.retrofit2:adapter-rxjava:2.1.0'
+    compile 'com.squareup.okhttp:okhttp:2.4.0'
+
+    //Fresco
+    compile 'com.facebook.fresco:fresco:0.14.1'
+
+    //LeakCanary
+    debugCompile 'com.squareup.leakcanary:leakcanary-android:1.5'
+    releaseCompile 'com.squareup.leakcanary:leakcanary-android-no-op:1.5'
+    testCompile 'com.squareup.leakcanary:leakcanary-android-no-op:1.5'
+
+    //Stetho start
+    compile 'com.facebook.stetho:stetho:1.4.1'
+    //Only the main stetho dependency is strictly required; however, you may also wish to use one of the network helpers:
+    compile 'com.facebook.stetho:stetho-okhttp3:1.4.1'
+//    compile 'com.facebook.stetho:stetho-urlconnection:1.4.1'
+    //You can also enable a JavaScript console with:
+    compile 'com.facebook.stetho:stetho-js-rhino:1.4.1'
+    //Stetho end
+}

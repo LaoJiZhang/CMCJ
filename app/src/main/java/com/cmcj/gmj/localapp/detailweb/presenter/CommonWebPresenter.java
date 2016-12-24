@@ -2,7 +2,7 @@ package com.cmcj.gmj.localapp.detailweb.presenter;
 
 import android.text.TextUtils;
 
-import com.cmcj.gmj.localapp.base.presenter.BaseActivityPresenter;
+import com.pansijing.common.base.presenter.BaseActivityPresenter;
 import com.cmcj.gmj.localapp.detailweb.view.CommonWebActivity;
 import com.cmcj.gmj.localapp.detailweb.view.ICommonWeb;
 

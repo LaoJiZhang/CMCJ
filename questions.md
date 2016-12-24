@@ -8,3 +8,7 @@
 
 ## 账号，密码，签名
 * 放到.gradle/gradle.properties里面，不要放到工程里面，防止泄漏
+
+## 模块划分
+* app是业务模块
+* common是工具类模块

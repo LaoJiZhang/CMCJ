@@ -1,6 +1,6 @@
 package com.cmcj.gmj.localapp.detail.view;
 
-import com.cmcj.gmj.localapp.base.view.IActivityView;
+import com.pansijing.common.base.view.IActivityView;
 import com.cmcj.gmj.localapp.detail.presenter.DetailPresenter;
 
 /**

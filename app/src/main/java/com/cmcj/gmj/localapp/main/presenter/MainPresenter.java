@@ -2,14 +2,14 @@ package com.cmcj.gmj.localapp.main.presenter;
 
 import android.view.View;
 
-import com.cmcj.gmj.localapp.base.network.LocalResponse;
-import com.cmcj.gmj.localapp.base.network.RetrofitService;
-import com.cmcj.gmj.localapp.base.presenter.BaseActivityDatabindingPresenter;
+import com.pansijing.common.network.LocalResponse;
+import com.pansijing.common.network.RetrofitService;
+import com.pansijing.common.base.presenter.BaseActivityDatabindingPresenter;
 import com.cmcj.gmj.localapp.main.modle.MovieResponse;
 import com.cmcj.gmj.localapp.main.view.IMain;
 import com.cmcj.gmj.localapp.main.view.MainActivity;
-import com.cmcj.gmj.localapp.utils.LogUtils;
-import com.cmcj.gmj.localapp.utils.ToastUtils;
+import com.pansijing.common.utils.LogUtils;
+import com.pansijing.common.utils.ToastUtils;
 
 import java.util.HashMap;
 import java.util.List;
@@ -17,7 +17,7 @@ import java.util.Map;
 
 import retrofit2.Call;
 
-import static com.cmcj.gmj.localapp.base.network.RetrofitService.getAPIService;
+import static com.pansijing.common.network.RetrofitService.getAPIService;
 
 /**
  * Created by guomaojian on 16/9/28.
