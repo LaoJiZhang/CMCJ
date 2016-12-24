@@ -2,7 +2,6 @@ package com.pansijing.common.database;
 
 import android.content.Context;
 
-import com.pansijing.common.database.table.DaoMaster;
 import com.pansijing.common.utils.LogUtils;
 
 import org.greenrobot.greendao.database.Database;

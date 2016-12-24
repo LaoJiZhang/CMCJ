@@ -10,9 +10,9 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.view.View;
 
-import com.cmcj.gmj.localapp.R;
+import com.pansijing.common.R;
 import com.pansijing.common.base.presenter.BasePresenter;
-import com.cmcj.gmj.localapp.databinding.ActivityLayoutBinding;
+import com.pansijing.common.databinding.ActivityLayoutBinding;
 
 import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;

@@ -5,7 +5,7 @@ import android.view.View;
 import com.pansijing.common.network.LocalResponse;
 import com.pansijing.common.network.RetrofitService;
 import com.pansijing.common.base.presenter.BaseActivityDatabindingPresenter;
-import com.cmcj.gmj.localapp.main.modle.MovieResponse;
+import com.pansijing.common.base.bean.MovieResponse;
 import com.cmcj.gmj.localapp.main.view.IMain;
 import com.cmcj.gmj.localapp.main.view.MainActivity;
 import com.pansijing.common.utils.LogUtils;

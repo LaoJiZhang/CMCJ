@@ -4,7 +4,7 @@ import com.pansijing.common.network.RetrofitService;
 import com.pansijing.common.base.presenter.BaseFragmentDatabindingPresenter;
 import com.cmcj.gmj.localapp.main.adapter.HomeNewAdapte;
 import com.cmcj.gmj.localapp.main.modle.IHomeModel;
-import com.cmcj.gmj.localapp.main.modle.MovieEntity;
+import com.pansijing.common.base.bean.MovieEntity;
 import com.cmcj.gmj.localapp.main.view.IHome;
 import com.cmcj.gmj.localapp.main.view.MainActivity;
 

@@ -1,9 +1,7 @@
 package com.pansijing.common.network;
 
-import com.pansijing.common.network.DouBanResponse;
-import com.pansijing.common.network.LocalResponse;
-import com.cmcj.gmj.localapp.main.modle.MovieEntity;
-import com.cmcj.gmj.localapp.main.modle.MovieResponse;
+import com.pansijing.common.base.bean.MovieEntity;
+import com.pansijing.common.base.bean.MovieResponse;
 
 import java.util.List;
 import java.util.Map;

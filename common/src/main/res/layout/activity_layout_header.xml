@@ -5,9 +5,11 @@
 
         <import type="android.view.View"/>
 
+        <import type="com.pansijing.common.base.component.BaseDataBindingActivity.ActivityTitleInfo"/>
+
         <variable
             name="titleInfo"
-            type="com.cmcj.gmj.localapp.base.component.BaseDataBindingActivity.ActivityTitleInfo"/>
+            type="ActivityTitleInfo"/>
     </data>
 
     <LinearLayout

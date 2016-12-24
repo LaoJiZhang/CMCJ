@@ -3,9 +3,9 @@
 
     <data>
 
-        <variable
-            name="checked"
-            type="boolean"/>
+        <!--<variable-->
+        <!--name="checked"-->
+        <!--type="Boolean"/>-->
     </data>
 
     <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
@@ -27,7 +27,7 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
             android:layout_marginTop="5dp"
-            android:textColor="@{checked ? @color/yellow : @color/gray1}"
+            android:textColor="@color/yellow"
             android:textSize="12sp"/>
     </LinearLayout>
 </layout>

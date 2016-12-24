@@ -3,8 +3,6 @@ package com.pansijing.common.database;
 import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
 
-import com.pansijing.common.database.table.DaoMaster;
-import com.pansijing.common.database.table.DaoSession;
 
 
 /**

@@ -10,7 +10,7 @@ import com.cmcj.gmj.localapp.R;
 import com.pansijing.common.base.adapter.DatabindingRecyclerDelegate;
 import com.pansijing.common.base.adapter.MultiTypeRecyclerViewAdapter;
 import com.cmcj.gmj.localapp.databinding.FragHomeListItemLayoutBinding;
-import com.cmcj.gmj.localapp.main.modle.MovieEntity;
+import com.pansijing.common.base.bean.MovieEntity;
 
 /**
  * Created by guomaojian on 16/12/23.

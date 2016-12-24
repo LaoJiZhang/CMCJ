@@ -1,5 +1,6 @@
 package com.cmcj.gmj.localapp.main.modle;
 
+import com.pansijing.common.base.bean.MovieEntity;
 import com.pansijing.common.network.RequestParamsFactory;
 import com.pansijing.common.network.RetrofitService;
 import com.pansijing.common.utils.LogUtils;

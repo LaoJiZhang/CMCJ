@@ -2,11 +2,11 @@ package com.pansijing.common.utils;
 
 import android.app.Application;
 
-import com.pansijing.common.BuildConfig;
-import com.pansijing.common.base.database.DBManager;
-import com.pansijing.common.base.network.RetrofitService;
 import com.facebook.drawee.backends.pipeline.Fresco;
 import com.facebook.stetho.Stetho;
+import com.pansijing.common.BuildConfig;
+import com.pansijing.common.database.DBManager;
+import com.pansijing.common.network.RetrofitService;
 import com.squareup.leakcanary.LeakCanary;
 
 /**

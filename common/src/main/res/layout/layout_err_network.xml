@@ -7,7 +7,7 @@
 
         <variable
             name="flag"
-            type="com.cmcj.gmj.localapp.base.component.BaseDataBindingActivity.ActivityFlag"/>
+            type="com.pansijing.common.base.component.BaseDataBindingActivity.ActivityFlag"/>
     </data>
 
     <LinearLayout

@@ -1,3 +1,11 @@
 <resources>
     <string name="app_name">Common</string>
+    <string name="tab1">首页</string>
+    <string name="tab2">网络请求</string>
+    <string name="tab3">数据库</string>
+    <string name="tab4">新内容</string>
+
+    <string name="network_error_tip1">网络似乎有点不给力啊</string>
+    <string name="network_error_tip2">请检查网络或重新加载</string>
+    <string name="refresh_retry">再试一次</string>
 </resources>

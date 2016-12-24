@@ -1,4 +1,4 @@
-package com.cmcj.gmj.localapp.main.modle;
+package com.pansijing.common.base.bean;
 
 import java.io.Serializable;
 

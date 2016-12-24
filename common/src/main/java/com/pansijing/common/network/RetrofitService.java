@@ -4,9 +4,6 @@ import android.app.Activity;
 import android.support.annotation.NonNull;
 import android.text.TextUtils;
 
-import com.cmcj.gmj.localapp.APIService;
-import com.cmcj.gmj.localapp.BuildConfig;
-import com.cmcj.gmj.localapp.application.LocalApplication;
 import com.pansijing.common.utils.LogUtils;
 import com.facebook.stetho.okhttp3.StethoInterceptor;
 
@@ -65,7 +62,7 @@ public class RetrofitService {
 
     public static RetrofitService createRetrofit() {
         if (INSTANCE == null) {
-            synchronized (LocalApplication.class) {
+            synchronized (RetrofitService.class) {
                 if (INSTANCE == null)
                     INSTANCE = new RetrofitService();
             }
@@ -97,7 +94,8 @@ public class RetrofitService {
         @Override
         public okhttp3.Response intercept(Chain chain) throws IOException {
             Request originalRequest = chain.request();
-            String cacheHeaderValue = BuildConfig.DEBUG ? "public, max-age=2419200" : "public, only-if-cached, max-stale=2419200";
+//            String cacheHeaderValue = BuildConfig.DEBUG ? "public, max-age=2419200" : "public, only-if-cached, max-stale=2419200";
+            String cacheHeaderValue = "public, max-age=2419200";
             Request request = originalRequest.newBuilder().build();
             okhttp3.Response response = chain.proceed(request);
             return response.newBuilder().removeHeader("Pragma").removeHeader("Cache-Control").header("Cache-Control", cacheHeaderValue).build();

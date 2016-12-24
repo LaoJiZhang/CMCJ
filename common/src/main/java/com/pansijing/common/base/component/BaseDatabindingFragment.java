@@ -8,9 +8,9 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.cmcj.gmj.localapp.R;
+import com.pansijing.common.R;
 import com.pansijing.common.base.presenter.BaseFragmentDatabindingPresenter;
-import com.cmcj.gmj.localapp.databinding.FragmentLayoutBinding;
+import com.pansijing.common.databinding.FragmentLayoutBinding;
 
 import org.greenrobot.eventbus.EventBus;
 

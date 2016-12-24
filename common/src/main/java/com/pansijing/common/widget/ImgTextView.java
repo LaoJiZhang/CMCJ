@@ -4,7 +4,6 @@ import android.content.Context;
 import android.content.res.Resources;
 import android.content.res.TypedArray;
 import android.databinding.BindingAdapter;
-import android.databinding.DataBindingUtil;
 import android.util.AttributeSet;
 import android.view.LayoutInflater;
 import android.widget.ImageView;
@@ -12,7 +11,6 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.pansijing.common.R;
-import com.cmcj.gmj.localapp.databinding.ViewImageTextLayoutBinding;
 import com.pansijing.common.utils.AppUtils;
 
 /**
@@ -33,7 +31,7 @@ public class ImgTextView extends LinearLayout {
         return mSelectedImgRes;
     }
 
-    private ViewImageTextLayoutBinding mBinding;
+    private com.pansijing.common.databinding.ViewImageTextLayoutBinding mBinding;
 
     public ImgTextView(Context context, AttributeSet attrs) {
         super(context, attrs);
