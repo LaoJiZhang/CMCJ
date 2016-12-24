@@ -25,19 +25,6 @@ public class LocalApplication extends Application {
     }
 
     private void init() {
-        if (LocalAppConfig.DEBUG) {
-            if (LeakCanary.isInAnalyzerProcess(this)) {
-                // This process is dedicated to LeakCanary for heap analysis.
-                // You should not init your app in this process.
-                return;
-            }
-            LeakCanary.install(this);
 
-            Stetho.initializeWithDefaults(this);
-        }
-        // Retrofit 初始化
-        RetrofitService.createRetrofit();
-        DBManager.createInstance(this);
-        Fresco.initialize(this);
     }
 }
