@@ -8,11 +8,13 @@ import android.support.v7.widget.RecyclerView;
 
 import com.cmcj.gmj.localapp.R;
 import com.cmcj.gmj.localapp.base.adapter.DatabindingRecyclerDelegate;
+import com.cmcj.gmj.localapp.base.adapter.OnRecyclerViewAttachItemClickListener;
 import com.cmcj.gmj.localapp.base.component.BaseDatabindingFragment;
 import com.cmcj.gmj.localapp.base.presenter.BaseFragmentDatabindingPresenter;
 import com.cmcj.gmj.localapp.databinding.FragmentHomeBinding;
 import com.cmcj.gmj.localapp.main.presenter.HomePresenter;
 import com.cmcj.gmj.localapp.utils.LogUtils;
+import com.cmcj.gmj.localapp.utils.ToastUtils;
 
 /**
  * Created by guomaojian on 16/11/5.
@@ -49,6 +51,31 @@ public class HomeFragment extends BaseDatabindingFragment<HomePresenter> impleme
         mBinding.homeRecyclerview.setLayoutManager(new LinearLayoutManager(getActivity()));
         mBinding.homeRecyclerview.setAdapter(mPresenter.getHomeAdapter());
         mBinding.homeRecyclerview.setItemAnimator(new DefaultItemAnimator());
+//        mBinding.homeRecyclerview.addOnItemTouchListener(new OnRecyclerViewItemClickListener<AbsMultiTypeRecyclerViewHolder<MovieEntity>>(mBinding.homeRecyclerview) {
+//
+//            @Override
+//            public void onItemClickEvent(RecyclerView recyclerView, AbsMultiTypeRecyclerViewHolder<MovieEntity> viewHolder) {
+//                viewHolder.getProxy().getItemByPosition(viewHolder.getLayoutPosition());
+//                LogUtils.i("CCC");
+//            }
+//
+//            @Override
+//            public void onItemLongClickEvent(RecyclerView recyclerView, AbsMultiTypeRecyclerViewHolder<MovieEntity> viewHolder) {
+//                LogUtils.i("CCC");
+//            }
+//        });
+        mBinding.homeRecyclerview.addOnChildAttachStateChangeListener(new OnRecyclerViewAttachItemClickListener() {
+            @Override
+            public void onItemClickEvent(Object data) {
+                LogUtils.i("ccc", data.toString());
+                ToastUtils.showToast("onItemClickEvent");
+            }
+
+            @Override
+            public void onItemLongClickEvent(Object data) {
+                ToastUtils.showToast("onItemLongClickEvent");
+            }
+        });
     }
 
     @Override

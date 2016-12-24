@@ -129,6 +129,7 @@ public abstract class MultiTypeRecyclerViewAdapter<D> extends RecyclerView.Adapt
 
     @Override
     public void onBindViewHolder(AbsMultiTypeRecyclerViewHolder holder, int position) {
+        holder.getViewDataBinding().getRoot().setTag(getItem(position));
         holder.getProxy().onBindItem(holder.getViewDataBinding(), getItem(position), position);
     }
 
