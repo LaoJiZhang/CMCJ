@@ -2,7 +2,8 @@ package com.pansijing.common.utils;
 
 import android.util.Log;
 
-import com.cmcj.gmj.localapp.BuildConfig;
+import com.pansijing.common.BuildConfig;
+
 
 public class LogUtils {
 

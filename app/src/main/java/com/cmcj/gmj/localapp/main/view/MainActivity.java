@@ -8,11 +8,11 @@ import android.view.View;
 import android.widget.Toast;
 
 import com.cmcj.gmj.localapp.R;
-import com.pansijing.common.base.component.BaseDataBindingActivity;
-import com.pansijing.common.base.presenter.BasePresenter;
 import com.cmcj.gmj.localapp.databinding.ActivityMainBinding;
 import com.cmcj.gmj.localapp.main.adapter.MainPagerAdapter;
 import com.cmcj.gmj.localapp.main.presenter.MainPresenter;
+import com.pansijing.common.base.component.BaseDataBindingActivity;
+import com.pansijing.common.base.presenter.BasePresenter;
 import com.pansijing.common.utils.LogUtils;
 
 import java.util.ArrayList;
