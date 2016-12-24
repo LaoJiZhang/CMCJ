@@ -11,9 +11,9 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
-import com.cmcj.gmj.localapp.R;
-import com.cmcj.gmj.localapp.application.LocalApplication;
+import com.pansijing.common.R;
 import com.cmcj.gmj.localapp.databinding.ViewImageTextLayoutBinding;
+import com.pansijing.common.utils.AppUtils;
 
 /**
  * Created by guomaojian on 16/10/9.
@@ -59,7 +59,7 @@ public class ImgTextView extends LinearLayout {
     public static void setChecked(ImgTextView imgTextView, boolean checked) {
         if (imgTextView.getSelectedImgRes() == 0 || imgTextView.getUnselectedImgRes() == 0)
             return;
-        Resources res = LocalApplication.sApp.getResources();
+        Resources res = AppUtils.getApplication().getResources();
         ((ImageView) imgTextView.findViewById(R.id.image_image_text)).setImageDrawable(checked ? res.getDrawable(imgTextView.getSelectedImgRes()) : res.getDrawable(imgTextView.getUnselectedImgRes()));
         ((TextView) imgTextView.findViewById(R.id.text_image_text)).setTextColor(checked ? res.getColor(R.color.yellow) : res.getColor(R.color.gray1));
     }

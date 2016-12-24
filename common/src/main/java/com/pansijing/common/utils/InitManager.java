@@ -44,6 +44,8 @@ public final class InitManager {
 
             Stetho.initializeWithDefaults(application);
         }
+
+        AppUtils.init(application);
         // Retrofit 初始化
         RetrofitService.createRetrofit();
         DBManager.createInstance(application);
