@@ -1,5 +1,7 @@
 package com.cmcj.gmj.localapp.main.view;
 
+import android.support.v7.widget.RecyclerView;
+
 import com.cmcj.gmj.localapp.base.view.IFragmentView;
 import com.cmcj.gmj.localapp.main.presenter.HomePresenter;
 
@@ -11,4 +13,6 @@ public interface IHome extends IFragmentView<HomePresenter> {
     void getMovieSuccess();
 
     void showNetError();
+
+    RecyclerView getRecyclerView();
 }

@@ -20,12 +20,19 @@ public abstract class MultiTypeRecyclerViewAdapter<D> extends RecyclerView.Adapt
     private static final int VIEWTYPE_BODY = 1 << 1;
     private static final int VIEWTYPE_FOOTER = 1 << 2;
 
+    private RecyclerView mRecyclerView;
     private Context mContext;
     private AbsMultiTypeRecyclerViewHolder mHeaderViewHolder;
+    private AbsMultiTypeRecyclerViewHolder mFooterViewHolder;
     private List mDatas = new ArrayList<>();
 
     public MultiTypeRecyclerViewAdapter(Context context) {
         mContext = context;
+    }
+
+    public MultiTypeRecyclerViewAdapter(RecyclerView view) {
+        mRecyclerView = view;
+        mContext = view.getContext();
     }
 
     public void setBindingDatas(List datas) {
@@ -33,15 +40,47 @@ public abstract class MultiTypeRecyclerViewAdapter<D> extends RecyclerView.Adapt
         notifyDataSetChanged();
     }
 
-    public void addHeaderView(Object object, DatabindingRecyclerDelegate proxy) {
-        ViewDataBinding headerBinding = DataBindingUtil.inflate(LayoutInflater.from(mContext), proxy.getItemLayoutResId(), null, false);
-        mHeaderViewHolder = new AbsMultiTypeRecyclerViewHolder(headerBinding, proxy);
+
+    public void addHeaderView(Object object, DatabindingRecyclerDelegate delegate) {
+        if (mRecyclerView == null)
+            throw new RuntimeException("如需使用headerView或者footerView 请使用 public MultiTypeRecyclerViewAdapter(RecyclerView view) 构造方法");
+        ViewDataBinding headerBinding = DataBindingUtil.inflate(LayoutInflater.from(mContext), delegate.getItemLayoutResId(), mRecyclerView, false);
+        mHeaderViewHolder = new AbsMultiTypeRecyclerViewHolder(headerBinding, delegate);
         mDatas.add(0, object);
+//        notifyItemInserted(0);
         notifyDataSetChanged();
+    }
+
+    public void removeHeaderView() {
+        if (mHeaderViewHolder != null) {
+            notifyItemRemoved(0);
+            mDatas.remove(0);
+            mHeaderViewHolder = null;
+        }
     }
 
     public int getHeaderCount() {
         return mHeaderViewHolder == null ? 0 : 1;
+    }
+
+    public void addFooterView(Object object, DatabindingRecyclerDelegate delegate) {
+        ViewDataBinding headerBinding = DataBindingUtil.inflate(LayoutInflater.from(mContext), delegate.getItemLayoutResId(), mRecyclerView, false);
+        mFooterViewHolder = new AbsMultiTypeRecyclerViewHolder(headerBinding, delegate);
+        mDatas.add(object);
+        notifyDataSetChanged();
+    }
+
+    public void removeFooterView() {
+        if (mHeaderViewHolder != null) {
+            int position = mDatas.size() - 1;
+            notifyItemRemoved(position);
+            mDatas.remove(position);
+            mFooterViewHolder = null;
+        }
+    }
+
+    public int getFooterCount() {
+        return mFooterViewHolder == null ? 0 : 1;
     }
 
     public abstract DatabindingRecyclerDelegate<D> createProxy();
@@ -57,8 +96,10 @@ public abstract class MultiTypeRecyclerViewAdapter<D> extends RecyclerView.Adapt
 
     @Override
     public int getItemViewType(int position) {
-        if (position < getHeaderCount())
+        if (mHeaderViewHolder != null && position < getHeaderCount())
             return VIEWTYPE_HEADER;
+        else if (mFooterViewHolder != null && position == getItemCount() - 1)
+            return VIEWTYPE_FOOTER;
         else
             return VIEWTYPE_BODY;
     }
@@ -72,9 +113,15 @@ public abstract class MultiTypeRecyclerViewAdapter<D> extends RecyclerView.Adapt
     public AbsMultiTypeRecyclerViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         switch (viewType) {
             case VIEWTYPE_HEADER:
+                if (mHeaderViewHolder == null)
+                    throw new RuntimeException("not add headerView");
                 return mHeaderViewHolder;
             case VIEWTYPE_BODY:
                 return createViewHolder();
+            case VIEWTYPE_FOOTER:
+                if (mFooterViewHolder == null)
+                    throw new RuntimeException("not add footerView");
+                return mFooterViewHolder;
             default:
                 return null;
         }

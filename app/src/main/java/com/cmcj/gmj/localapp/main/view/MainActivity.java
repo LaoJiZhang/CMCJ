@@ -1,6 +1,7 @@
 package com.cmcj.gmj.localapp.main.view;
 
 import android.databinding.ViewDataBinding;
+import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.view.ViewPager;
 import android.view.View;
@@ -25,6 +26,10 @@ public class MainActivity extends BaseDataBindingActivity<MainPresenter> impleme
     private String[] mTitles = new String[]{"首页", "网络", "数据库", "其他"};
     private ActivityMainBinding mBinding;
     private MainPagerAdapter mMainPagerAdapter;
+
+    @Override
+    protected void onSaveInstanceState(Bundle outState) {
+    }
 
     @Override
     public ActivityProxy createActivityProxy() {

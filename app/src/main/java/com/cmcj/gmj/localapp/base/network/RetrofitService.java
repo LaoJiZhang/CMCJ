@@ -267,7 +267,7 @@ public class RetrofitService {
                         if (throwable instanceof SocketTimeoutException)
                             subscribeProxy.onMainError("网络连接超时错误");
                         else
-                            subscribeProxy.onMainError("未知错误");
+                            subscribeProxy.onMainError(throwable.toString());
                         LogUtils.i("sendDouBanObservableRequest", throwable.toString());
                     }
                 });

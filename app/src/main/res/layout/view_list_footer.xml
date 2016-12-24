@@ -16,7 +16,7 @@
             android:gravity="center"
             android:paddingBottom="20dp"
             android:paddingTop="20dp"
-            android:text="我是header123"
+            android:text="我是footer456"
             android:textColor="@color/black1"
             android:textSize="15sp"/>
     </LinearLayout>

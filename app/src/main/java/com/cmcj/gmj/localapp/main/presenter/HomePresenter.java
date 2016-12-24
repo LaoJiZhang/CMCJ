@@ -1,9 +1,5 @@
 package com.cmcj.gmj.localapp.main.presenter;
 
-import android.databinding.ViewDataBinding;
-
-import com.cmcj.gmj.localapp.R;
-import com.cmcj.gmj.localapp.base.adapter.DatabindingRecyclerDelegate;
 import com.cmcj.gmj.localapp.base.network.RetrofitService;
 import com.cmcj.gmj.localapp.base.presenter.BaseFragmentDatabindingPresenter;
 import com.cmcj.gmj.localapp.main.adapter.HomeNewAdapte;
@@ -11,7 +7,6 @@ import com.cmcj.gmj.localapp.main.modle.IHomeModel;
 import com.cmcj.gmj.localapp.main.modle.MovieEntity;
 import com.cmcj.gmj.localapp.main.view.IHome;
 import com.cmcj.gmj.localapp.main.view.MainActivity;
-import com.cmcj.gmj.localapp.utils.LogUtils;
 
 import java.util.List;
 
@@ -23,9 +18,12 @@ public class HomePresenter extends BaseFragmentDatabindingPresenter<IHome, MainA
 
     private static String TAG = HomePresenter.class.getSimpleName();
     private IHomeModel mHomeModle;
-    private HomeNewAdapte mHomeNewAdapte = new HomeNewAdapte(getActivity());
+    private HomeNewAdapte mHomeNewAdapte;
 
     public HomeNewAdapte getHomeAdapter() {
+        if (mHomeNewAdapte == null) {
+            mHomeNewAdapte = new HomeNewAdapte(getView().getRecyclerView());
+        }
         return mHomeNewAdapte;
     }
 
@@ -46,17 +44,6 @@ public class HomePresenter extends BaseFragmentDatabindingPresenter<IHome, MainA
             @Override
             public void onSuccessed(List<MovieEntity> data) {
                 if (isViewAttach()) {
-                    getHomeAdapter().addHeaderView("我是header Title", new DatabindingRecyclerDelegate<String>() {
-                        @Override
-                        public int getItemLayoutResId() {
-                            return R.layout.view_list_header;
-                        }
-
-                        @Override
-                        public void onBindItem(ViewDataBinding viewDataBinding, String item, int position) {
-                            LogUtils.i("AAA", "onBindItem : " + item.toString());
-                        }
-                    });
                     getHomeAdapter().setBindingDatas(data);
                     getView().getMovieSuccess();
                 }

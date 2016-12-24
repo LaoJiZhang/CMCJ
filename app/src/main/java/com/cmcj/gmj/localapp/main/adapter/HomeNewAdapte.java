@@ -1,7 +1,7 @@
 package com.cmcj.gmj.localapp.main.adapter;
 
-import android.content.Context;
 import android.databinding.ViewDataBinding;
+import android.support.v7.widget.RecyclerView;
 import android.text.TextUtils;
 import android.view.View;
 import android.widget.TextView;
@@ -18,8 +18,8 @@ import com.cmcj.gmj.localapp.main.modle.MovieEntity;
 
 public class HomeNewAdapte extends MultiTypeRecyclerViewAdapter<MovieEntity> {
 
-    public HomeNewAdapte(Context context) {
-        super(context);
+    public HomeNewAdapte(RecyclerView view) {
+        super(view);
     }
 
     @Override
